@@ -1,0 +1,267 @@
+export const users = [
+  {
+    id: 1,
+    name: 'Jane Doe',
+  },
+  {
+    id: 2,
+    name: 'John Doe',
+  },
+];
+
+export const pastEvents = [
+  {
+    id: 1,
+    name: 'Past event one',
+    date: 'Tuesday',
+  },
+];
+
+export const myEvents = [
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-02',
+  },
+  {
+    id: 3,
+    name: 'My event three',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'cancelled',
+    comment: 'Got sick',
+  },
+  {
+    id: 4,
+    name: 'My event four',
+    date: '2019-01-02T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 5,
+    name: 'My event five',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 6,
+    name: 'My event six',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 7,
+    name: 'My event seven',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 8,
+    name: 'My event eight',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 9,
+    name: 'My event nine',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'My event two',
+    date: '2019-01-01T00:00:00.000Z',
+    status: 'active',
+  },
+];
