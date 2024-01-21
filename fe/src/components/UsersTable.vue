@@ -78,6 +78,7 @@
 <style lang="scss" scoped>
 .users-table {
   height: 100%;
+  width: 100%;
   overflow: auto;
 }
 </style>

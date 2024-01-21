@@ -1,5 +1,4 @@
 import { tfGet } from '@/utils/apiClient.js';
-// import { config } from '@/utils/config.js';
 
 /**
  * Gets events.

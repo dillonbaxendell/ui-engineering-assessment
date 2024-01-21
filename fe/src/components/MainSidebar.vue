@@ -30,7 +30,7 @@
 
 <script>
   export default {
-    name: 'App',
+    name: 'MainSidebar',
     computed: {
       activeTab() {
         return this.$route.name?.match(/event/i) ? 'Events' : 'Users';

@@ -7,6 +7,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import {
   ElAlert,
   ElButton,
+  ElCard,
   ElDatePicker,
   ElDialog,
   ElForm,
@@ -40,6 +41,7 @@ app.use(router);
 
 app.use(ElAlert);
 app.use(ElButton);
+app.use(ElCard);
 app.use(ElDatePicker);
 app.use(ElDialog);
 app.use(ElForm);

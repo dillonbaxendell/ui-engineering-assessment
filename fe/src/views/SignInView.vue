@@ -1,0 +1,69 @@
+<template>
+  <ElCard class="card">
+    <template #header>
+      Sign In
+    </template>
+    <ElForm
+      ref="form"
+      :model="signInForm"
+      :rules="rules"
+      label-width="120px"
+    >
+      <ElFormItem label="Email address" prop="email_address">
+        <ElInput v-model="signInForm.email_address" />
+      </ElFormItem>
+    </ElForm>
+    <template #footer>
+      <ElButton
+        type="primary"
+        :disabled="!signInForm.email_address"
+        @click="doSignIn"
+      >
+        Confirm
+      </ElButton>
+    </template>
+  </ElCard>
+</template>
+
+<script>
+  import { mapActions } from 'pinia';
+  import { signIn, setSignedIn } from '@/services/auth.js';
+  import { useAuthStore } from '@/stores/auth.js';
+
+  export default {
+    name: 'SignInView',
+    data() {
+      return {
+        signInForm: {},
+        rules: {
+          email_address: [{
+            required: true,
+            message: 'Required',
+            trigger: 'blur',
+          }],
+        },
+      };
+    },
+    methods: {
+      ...mapActions(useAuthStore, ['setUser']),
+
+      async doSignIn(formData) {
+        const data = await signIn(formData);
+
+        this.setUser(data);
+        setSignedIn(data);
+        this.$router.replace({ name: 'Home' });
+      },
+    },
+  };
+</script>
+
+<style scoped>
+  .card {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    width: 420px;
+    transform: translateX(-50%);
+  }
+</style>
