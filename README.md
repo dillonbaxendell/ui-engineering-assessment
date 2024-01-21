@@ -7,6 +7,9 @@
 
 ## Back-end
 - `/be`
+### Requirements
+- rails v7
+- sqlite3
 
 ## Getting started
 - run `bash setup.sh`
@@ -18,7 +21,7 @@
 - add owner column to events table
 - endpoint to retrieve owned events
 - endpoint for past events?
-- add current user to store, use cookies
-- add sign in page and requireAuth routes
+- endpoint for sign-in (look up user by email)
 - add upcoming events view
-- fix new event form
+- fix new event form validation
+- create "add attendee" workflow

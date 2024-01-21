@@ -39,7 +39,7 @@ export const routes = [
       {
         path: '',
         name: 'Users',
-        component: () => import('@/components/UsersTable.vue'),
+        component: () => import('@/components/tables/UsersTable.vue'),
       },
     ],
   },
@@ -55,7 +55,7 @@ export const routes = [
         path: 'my-events',
         name: 'MyEvents',
         beforeEnter: requireAuth,
-        component: () => import('@/components/EventsTable.vue'),
+        component: () => import('@/components/tables/EventsTable.vue'),
         props() {
           return {
             eventsType: 'myEvents',
@@ -66,7 +66,7 @@ export const routes = [
         path: 'past-events',
         name: 'PastEvents',
         beforeEnter: requireAuth,
-        component: () => import('@/components/EventsTable.vue'),
+        component: () => import('@/components/tables/EventsTable.vue'),
         props() {
           return {
             eventsType: 'pastEvents',

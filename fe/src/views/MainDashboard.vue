@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import EventModal from '@/components/EventModal.vue';
+  import EventModal from '@/components/modals/EventModal.vue';
   import MainSidebar from '@/components/MainSidebar.vue';
 
   export default {

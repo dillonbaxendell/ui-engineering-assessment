@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, loadEnv } from 'vite'
 import eslint from 'vite-plugin-eslint';
 import vue from '@vitejs/plugin-vue'
+// eslint-disable-next-line import/extensions, import/no-unresolved
 import ElementPlus from 'unplugin-element-plus/vite';
 
 const env = loadEnv('development', process.cwd(), '');
