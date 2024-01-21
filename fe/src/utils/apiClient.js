@@ -1,19 +1,19 @@
 import axios from 'axios';
-import { config as apiConfig } from '@/utils/config.js';
-import {
-  pastEvents,
-  myEvents,
-  users,
-} from '@/data/data.js';
+// import { config as apiConfig } from '@/utils/config.js';
+// import {
+//   pastEvents,
+//   myEvents,
+//   users,
+// } from '@/data/data.js';
 
-const apiUrl = apiConfig.VUE_APP_API_URL;
+// const apiUrl = apiConfig.API_URL;
 
 /**
  * Set the `baseURL` for axios, which will be prepended to `config.url` unless `config.url` is absolute.
  */
-export function activateAxios() {
-  axios.defaults.baseURL = apiUrl;
-}
+// export function activateAxios() {
+//   axios.defaults.baseURL = apiUrl;
+// }
 /**
  * A customized axios method that returns response or throws an error. This is used when the full response schema and error handling are handled elsewhere.
  * The supported order of parameters is:
@@ -49,18 +49,19 @@ export function tfFetch(...config) {
  *
  * @param {string} method
  * @param {string} url
- * param {string} config
  *
  * @returns {object}
  */
-async function getAxiosDataWithoutPayload(method, url /* config */) {
-  // const { data } = await axios({ method, url, ...config });
+async function getAxiosDataWithoutPayload(method, url) {
+  const { data } = await axios({ method, url: `/v1/${url}` });
 
-  switch (url) {
-    case 'my-events': return myEvents;
-    case 'users': return users;
-    default: return pastEvents;
-  }
+  return data;
+
+  // switch (url) {
+  //   case 'my-events': return myEvents;
+  //   case 'users': return users;
+  //   default: return pastEvents;
+  // }
 }
 
 /**
@@ -71,8 +72,8 @@ async function getAxiosDataWithoutPayload(method, url /* config */) {
  * @param {object} config
  * @returns {Promise}
  */
-export async function tfGet(url, config) {
-  return getAxiosDataWithoutPayload('get', url, config);
+export async function tfGet(url) {
+  return getAxiosDataWithoutPayload('get', url);
 }
 
 /**

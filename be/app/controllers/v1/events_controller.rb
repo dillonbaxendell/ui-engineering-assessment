@@ -5,7 +5,7 @@ module V1
 
     # GET /v1/events
     def index
-      events = Events.all
+      events = Event.all
       render json: events.to_json
     end
 
@@ -46,7 +46,7 @@ module V1
     end
 
     # GET /v1/events/:event_id/users
-    def index
+    def users
       event = Event.find(params[:event_id])
       attendees = event.attendees
 

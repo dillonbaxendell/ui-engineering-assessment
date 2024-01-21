@@ -1,15 +1,11 @@
 import { tfGet } from '@/utils/apiClient.js';
+// import { config } from '@/utils/config.js';
 
 /**
  * Gets events.
  *
- * @param {string} eventsType
  * @returns {Promise}
  */
-export async function getEvents(eventsType) {
-  if (eventsType === 'pastEvents') {
-    return tfGet('past-events');
-  }
-
-  return tfGet('my-events');
+export async function getEvents() {
+  return tfGet('events');
 }

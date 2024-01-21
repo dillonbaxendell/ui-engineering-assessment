@@ -4,7 +4,7 @@ import {
   PiniaVuePlugin,
 } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
-import { activateAxios } from '@/utils/apiClient.js';
+// import { activateAxios } from '@/utils/apiClient.js';
 import {
   ElAlert,
   ElButton,
@@ -31,7 +31,7 @@ import router from './router.js';
 import './assets/styles/main.scss';
 
 // Set up axios defaults and request/response interceptors.
-activateAxios();
+// activateAxios();
 
 const pinia = createPinia();
 const app = createApp(App);

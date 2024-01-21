@@ -2,12 +2,12 @@
   <div class="events-table">
     <ElTable
       v-if="localEvents"
-      :data="localEvents"
+      :data="tableData"
       @sort-change="doSort"
     >
       <ElTableColumn prop="id" label="ID" />
       <ElTableColumn prop="name" label="Name" sortable="custom" />
-      <ElTableColumn prop="date" label="Date" :formatter="dateFormatter">
+      <ElTableColumn prop="start_date" label="Date" :formatter="dateFormatter">
         <template #default="scope">
           <ElTooltip
             v-if="scope.row.status === 'cancelled'"
@@ -58,18 +58,16 @@
     },
     computed: {
       ...mapState(useEventsStore, ['events']),
+      tableData() {
+        return this.eventsType === 'pastEvents'
+          ? this.localEvents.filter(({ start_date }) => Date.parse(start_date) < Date.now())
+          : this.localEvents.filter(({ start_date }) => Date.parse(start_date) >= Date.now());
+      },
     },
     watch: {
       events: {
         handler() {
-          this.localEvents = this.events.map((event) => event);
-        },
-        immediate: true,
-        deep: true,
-      },
-      eventsType: {
-        async handler() {
-          await this.loadEvents(this.eventsType);
+          this.localEvents = this.events?.map((event) => event) || [];
         },
         immediate: true,
         deep: true,
