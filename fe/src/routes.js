@@ -20,16 +20,33 @@ function requireAuth(to, from, next) {
 export const routes = [
   {
     path: '/',
-    name: 'Home',
-    beforeEnter: requireAuth,
-    redirect: { name: 'Events' },
+    component: () => import('@/views/MainDashboard.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('@/components/UpcomingEvents.vue'),
+      },
+    ],
   },
   {
     path: '/sign-in',
     alias: '/login',
-    name: 'SignInPage',
+    name: 'SignIn',
     component: () => import('@/views/SignInView.vue'),
-    meta: { pageType: 'authentication' },
+  },
+  {
+    path: '/sign-out',
+    alias: '/logout',
+    name: 'SignOut',
+    redirect: {
+      name: 'Home',
+      props() {
+        return {
+          signOut: true,
+        };
+      },
+    },
   },
   {
     path: '/users',

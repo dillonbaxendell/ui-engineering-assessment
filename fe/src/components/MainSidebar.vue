@@ -33,7 +33,15 @@
     name: 'MainSidebar',
     computed: {
       activeTab() {
-        return this.$route.name?.match(/event/i) ? 'Events' : 'Users';
+        if (this.$route.name?.match(/event/i)) {
+          return 'Events';
+        }
+
+        if (this.$route.name?.match(/user/i)) {
+          return 'Users';
+        }
+
+        return null;
       },
     },
   };

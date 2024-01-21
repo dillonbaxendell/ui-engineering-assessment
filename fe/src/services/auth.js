@@ -53,7 +53,6 @@ export function setSignedIn(user) {
 /**
  * Sign the user in.
  *
- * @param {object} userId
  * @returns {object}
  */
 export function signIn() {

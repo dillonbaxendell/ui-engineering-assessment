@@ -1,6 +1,8 @@
 <template>
   <div class="main-container">
-    <MainSidebar />
+    <MainSidebar
+      v-if="authenticated"
+    />
     <div class="main-content">
       <router-view />
     </div>
@@ -9,6 +11,9 @@
 </template>
 
 <script>
+  import { mapState } from 'pinia';
+  import { useAuthStore } from '@/stores/auth.js';
+  import { signOut } from '@/services/auth.js';
   import EventModal from '@/components/modals/EventModal.vue';
   import MainSidebar from '@/components/MainSidebar.vue';
 
@@ -19,9 +24,12 @@
       MainSidebar,
     },
     computed: {
-      activeTab() {
-        return this.$route.name?.match(/event/i) ? 'Events' : 'Users';
-      },
+      ...mapState(useAuthStore, ['authenticated']),
+    },
+    async created() {
+      if (this.signOut) {
+        await signOut();
+      }
     },
   };
 </script>
@@ -34,5 +42,6 @@
 .main-content {
   display: flex;
   flex: 1 0 auto;
+  justify-content: center;
 }
 </style>
