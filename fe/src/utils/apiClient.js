@@ -1,19 +1,5 @@
 import axios from 'axios';
-// import { config as apiConfig } from '@/utils/config.js';
-// import {
-//   pastEvents,
-//   myEvents,
-//   users,
-// } from '@/data/data.js';
 
-// const apiUrl = apiConfig.API_URL;
-
-/**
- * Set the `baseURL` for axios, which will be prepended to `config.url` unless `config.url` is absolute.
- */
-// export function activateAxios() {
-//   axios.defaults.baseURL = apiUrl;
-// }
 /**
  * A customized axios method that returns response or throws an error. This is used when the full response schema and error handling are handled elsewhere.
  * The supported order of parameters is:
@@ -56,12 +42,6 @@ async function getAxiosDataWithoutPayload(method, url) {
   const { data } = await axios({ method, url: `/v1/${url}` });
 
   return data;
-
-  // switch (url) {
-  //   case 'my-events': return myEvents;
-  //   case 'users': return users;
-  //   default: return pastEvents;
-  // }
 }
 
 /**
@@ -69,7 +49,6 @@ async function getAxiosDataWithoutPayload(method, url) {
  * [axios configs](https://axios-http.com/docs/req_config)
  *
  * @param {string} url
- * @param {object} config
  * @returns {Promise}
  */
 export async function tfGet(url) {
