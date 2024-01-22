@@ -31,11 +31,6 @@
     computed: {
       ...mapState(useAuthStore, ['authenticated']),
     },
-    watch: {
-      authenticated() {
-        this.$router.go();
-      },
-    },
     async created() {
       const auth = window.localStorage.getItem('auth') === 'true';
 

@@ -55,6 +55,7 @@
   import { getEvents } from '@/services/events.js';
   import { useEventsStore } from '@/stores/events.js';
   import { useAlertsStore } from '@/stores/alerts.js';
+  import { formatDate } from '@/utils/common.js';
 
   export default {
     name: 'EventsTable',
@@ -140,19 +141,7 @@
         }
       },
       dateFormatter(row, column, cellValue) {
-        const timezoneOffset = new Date().getTimezoneOffset() / 60;
-        const timezoneString = `${timezoneOffset > 0 ? '-' : '+'}${(`0${timezoneOffset}`).slice(-2)}:00`;
-
-        try {
-          return new Date(cellValue.replace(/Z$/, timezoneString)).toLocaleDateString('en-us', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-          });
-        } catch {
-          return 'Invalid date';
-        }
+        return formatDate(cellValue);
       },
     },
   };

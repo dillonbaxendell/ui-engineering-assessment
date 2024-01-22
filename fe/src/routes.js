@@ -1,5 +1,3 @@
-import { signOut } from '@/services/auth.js';
-
 /**
  * Direct user to sign in page depending on if user is authenticated and confirmed
  *
@@ -14,35 +12,14 @@ function requireAuth(to, from, next) {
     next();
   } else {
     next({
-      path: '/sign-in',
-      query: { redirect: to.fullPath },
+      name: 'SignIn',
     });
   }
-}
-
-/**
- * Sign out user
- *
- * @param {object} to
- * @param {object} from
- * @param {Function} next
- */
-function checkSignOut(to, from, next) {
-  console.log(to.query, from.query)
-  if (to.query?.signOut) {
-    signOut();
-    next({
-      name: to.name,
-      query: undefined,
-    });
-  }
-  next();
 }
 
 export const routes = [
   {
     path: '/',
-    beforeEnter: checkSignOut,
     component: () => import('@/views/MainDashboard.vue'),
     children: [
       {
@@ -104,6 +81,6 @@ export const routes = [
   },
   {
     path: '/:pathMatch(.*)*/',
-    component: import('@/views/NotFound.vue'),
+    component: () => import('@/views/NotFound.vue'),
   },
 ];

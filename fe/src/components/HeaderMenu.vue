@@ -44,6 +44,7 @@
   import { mapActions, mapState } from 'pinia';
   import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
+  import { signOut } from '@/services/auth.js';
 
   export default {
     name: 'MainHeader',
@@ -53,9 +54,9 @@
     methods: {
       ...mapActions(useEventsStore, ['editEvent']),
 
-      signOut() {
-        this.$router.push({ name: 'Home', query: { signOut: true } })
-          .then(() => { this.$router.go(0); });
+      async signOut() {
+        signOut();
+        await this.$router.push({ name: 'Home' });
       },
     },
   };
