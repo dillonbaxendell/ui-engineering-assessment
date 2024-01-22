@@ -20,7 +20,7 @@
   import { getCookie } from '@/utils/cookies.js';
   import { config } from '@/utils/config.js';
 
-  const cookieNameSpace = config.COOKIE_NAMESPACE;
+  const cookieNameSpace = config.VITE_COOKIE_NAMESPACE;
 
   export default {
     name: 'MainDashboard',

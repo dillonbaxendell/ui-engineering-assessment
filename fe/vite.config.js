@@ -18,7 +18,7 @@ export default defineConfig({
   },
   define: {
     'process.env': {
-      env,
+      ...env,
     },
   },
   plugins: [
@@ -41,7 +41,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '^/v1': env.API_URL,
+      '^/v1': env.VITE_API_URL,
     },
   },
   test: {

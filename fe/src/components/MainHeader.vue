@@ -14,7 +14,7 @@
         @close="removeAlert(alert)"
       />
     </div>
-    <h1>Event scheduler</h1>
+    <h2>Event scheduler</h2>
   </header>
 </template>
 
@@ -63,5 +63,12 @@
       padding: .5em 1.5em .5em .5em;
     }
   }
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  height: var(--el-menu-horizontal-height);
+  margin: 0;
 }
 </style>

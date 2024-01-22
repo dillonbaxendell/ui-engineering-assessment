@@ -28,9 +28,7 @@ export function getCookie(name) {
  * @param {string} name - Name of the cookie to delete.
  */
 export function deleteCookie(name) {
-  const domain = `domain=${window.location.href.replace(/^(?:https?:\/\/)?(?:[^/]+\.)?([^./]+\.[^./]+).*$/, '$1')};`;
-
-  document.cookie = `${name}=; ${domain} path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+  document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 
 /**

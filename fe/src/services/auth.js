@@ -6,7 +6,7 @@ import { config } from '@/utils/config.js';
 
 import { deleteCookie, setCookie } from '@/utils/cookies.js';
 
-const cookieNameSpace = config.COOKIE_NAMESPACE;
+const cookieNameSpace = config.VITE_COOKIE_NAMESPACE;
 
 /**
  * Log the user out by: update the Pinia Store, and remove cookies/local storage items
