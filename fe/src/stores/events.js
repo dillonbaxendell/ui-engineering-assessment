@@ -14,7 +14,7 @@ export const useEventsStore = defineStore('events', {
      * @param {string} events
      */
     setEvents(events) {
-      this.events = events;
+      this.events.splice(0, this.events.length - 1, ...events);
     },
     editEvent(event) {
       this.editingEvent = event;

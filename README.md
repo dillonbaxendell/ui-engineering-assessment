@@ -1,4 +1,4 @@
-# Threeflow Full-Stack Challenge - Front-end
+# Threeflow Full-Stack Challenge
 
 ## Front-end
 - `/fe` directory

@@ -38,11 +38,9 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'pinia';
-  import { getEvents } from '@/services/events.js';
+  import { mapState } from 'pinia';
   import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
-  import { useAlertsStore } from '@/stores/alerts.js';
   import { formatDate } from '@/utils/common.js';
 
   export default {
@@ -51,27 +49,7 @@
       ...mapState(useAuthStore, ['authenticated']),
       ...mapState(useEventsStore, ['events']),
     },
-    async created() {
-      await this.loadEvents();
-    },
     methods: {
-      ...mapActions(useEventsStore, ['setEvents']),
-      ...mapActions(useAlertsStore, ['addAlert']),
-      /**
-       * Load events from the server.
-       */
-      async loadEvents() {
-        try {
-          const data = await getEvents();
-
-          this.setEvents(data);
-        } catch (error) {
-          this.addAlert({
-            title: 'Error retrieving events.',
-            type: 'error',
-          });
-        }
-      },
       dateFormatter(dateString) {
         return formatDate(dateString);
       },
@@ -84,6 +62,10 @@
     display: inline-block;
     width: 900px;
     padding: 1em;
+
+    :deep(.el-card) {
+      margin: 1em 0;
+    }
   }
 
   .card-header {

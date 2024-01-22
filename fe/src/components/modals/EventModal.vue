@@ -11,13 +11,17 @@
       :model="eventForm"
       :rules="rules"
       label-width="120px"
+      @validate="validateHandler"
     >
       <ElFormItem label="Event name" prop="name">
         <ElInput v-model="eventForm.name" />
       </ElFormItem>
-      <ElFormItem label="Event date" prop="date">
+      <ElFormItem label="Location" prop="location">
+        <ElInput v-model="eventForm.location" />
+      </ElFormItem>
+      <ElFormItem label="Date / Time" prop="start_date">
         <ElDatePicker
-          v-model="eventForm.date"
+          v-model="eventForm.start_date"
           type="date"
           placeholder="Pick a day"
         />
@@ -32,7 +36,7 @@
         </ElButton>
         <ElButton
           type="primary"
-          :disabled="isFormDisabled"
+          :disabled="!isFormValid"
           @click="confirmModal"
         >
           Confirm
@@ -45,16 +49,42 @@
 <script>
   import { mapActions, mapState, mapWritableState } from 'pinia';
   import { useEventsStore } from '@/stores/events.js';
+  import { saveEvent } from '@/services/events.js';
 
   export default {
     name: 'EventModal',
+    emits: [
+      'reload',
+    ],
     data() {
       return {
-        eventForm: null,
+        eventForm: {
+          name: '',
+          location: '',
+          start_date: '',
+        },
+        formValidity: {
+          name: false,
+          location: false,
+          start_date: false,
+        },
         rules: {
           name: [{
             required: true,
             message: 'Required',
+            trigger: 'blur',
+          }],
+          location: [{
+            required: true,
+            message: 'Required',
+            trigger: 'blur',
+          }],
+          start_date: [{
+            required: true,
+            message: 'Required',
+            trigger: 'blur',
+          }, {
+            validator: this.checkDate,
             trigger: 'blur',
           }],
         },
@@ -67,17 +97,18 @@
       eventType() {
         return this.editingEvent ? 'Edit' : 'New';
       },
-      isFormDisabled() {
-        console.log(this.$refs.form);
-
-        return true;
+      isFormValid() {
+        return this.formValidity.name
+          && this.formValidity.location
+          && this.formValidity.start_date;
       },
     },
     watch: {
       editingEvent() {
         this.eventForm = {
           name: '',
-          date: '',
+          location: '',
+          start_date: '',
           ...this.editingEvent,
         };
       },
@@ -86,10 +117,18 @@
       ...mapActions(useEventsStore, ['cancelEdit']),
 
       confirmModal() {
+        saveEvent(this.eventForm);
         this.isModalVisible = false;
+        this.$emit('reload');
       },
       checkDate(rule, value, callback) {
-        return callback(new Error('Required'));
+        if (Date.parse(value) <= Date.now()) {
+          callback(new Error('Start date must be in the future.'));
+        }
+        callback();
+      },
+      validateHandler(propName, isValid) {
+        this.formValidity[propName] = isValid;
       },
     },
   };

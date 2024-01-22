@@ -23,10 +23,8 @@
   }
 
   #app {
-    height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
   }
   .main {
     display: flex;

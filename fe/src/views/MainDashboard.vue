@@ -1,19 +1,22 @@
 <template>
-  <div class="main-container">
+  <div :class="['main-container', { auth: authenticated }]">
     <MainSidebar
       v-if="authenticated"
     />
     <div class="main-content">
       <router-view />
     </div>
-    <EventModal />
+    <EventModal @reload="loadEvents" />
   </div>
 </template>
 
 <script>
   import { mapActions, mapState } from 'pinia';
+  import { useAlertsStore } from '@/stores/alerts.js';
   import { useAuthStore } from '@/stores/auth.js';
+  import { useEventsStore } from '@/stores/events.js';
   import { setSignedIn } from '@/services/auth.js';
+  import { getEvents } from '@/services/events.js';
   import { getUser } from '@/services/users.js';
   import EventModal from '@/components/modals/EventModal.vue';
   import MainSidebar from '@/components/MainSidebar.vue';
@@ -43,9 +46,28 @@
           setSignedIn(data);
         }
       }
+
+      await this.loadEvents();
     },
     methods: {
       ...mapActions(useAuthStore, ['setUser']),
+      ...mapActions(useEventsStore, ['setEvents']),
+      ...mapActions(useAlertsStore, ['addAlert']),
+      /**
+       * Load events from the server.
+       */
+      async loadEvents() {
+        try {
+          const data = await getEvents(this.eventsType);
+
+          this.setEvents(data);
+        } catch (error) {
+          this.addAlert({
+            title: 'Error retrieving events.',
+            type: 'error',
+          });
+        }
+      },
     },
   };
 </script>
@@ -54,6 +76,10 @@
 .main-container {
   display: flex;
   height: 100%;
+
+  &.auth {
+    margin-left: 60px;
+  }
 }
 .main-content {
   display: flex;

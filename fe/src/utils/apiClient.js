@@ -84,7 +84,7 @@ async function getAxiosDataWithPayload(
 ) {
   const { data } = await axios({
     method,
-    url,
+    url: `/v1/${url}`,
     data: payload,
     ...config,
   });

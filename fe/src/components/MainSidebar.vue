@@ -49,9 +49,14 @@
 
 <style lang="scss">
   .sidebar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 60px;
     display: flex;
+
     .el-menu {
-      flex: 1;
+      flex: 1 0 auto;
     }
   }
 </style>

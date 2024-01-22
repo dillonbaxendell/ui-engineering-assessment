@@ -52,9 +52,7 @@
 
 <script>
   import { mapActions, mapState } from 'pinia';
-  import { getEvents } from '@/services/events.js';
   import { useEventsStore } from '@/stores/events.js';
-  import { useAlertsStore } from '@/stores/alerts.js';
   import { formatDate } from '@/utils/common.js';
 
   export default {
@@ -97,12 +95,8 @@
         deep: true,
       },
     },
-    async created() {
-      await this.loadEvents();
-    },
     methods: {
-      ...mapActions(useEventsStore, ['setEvents', 'editEvent']),
-      ...mapActions(useAlertsStore, ['addAlert']),
+      ...mapActions(useEventsStore, ['editEvent']),
       /**
        * Evaluates the name to determine the correct route params to push.
        *
@@ -111,21 +105,6 @@
        */
       async onTabClick({ name }) {
         await this.$router.push({ name });
-      },
-      /**
-       * Load events from the server.
-       */
-      async loadEvents() {
-        try {
-          const data = await getEvents(this.eventsType);
-
-          this.setEvents(data);
-        } catch (error) {
-          this.addAlert({
-            title: 'Error retrieving events.',
-            type: 'error',
-          });
-        }
       },
       doSort({ prop, order }) {
         if (order) {

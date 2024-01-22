@@ -1,4 +1,4 @@
-import { tfGet } from '@/utils/apiClient.js';
+import { tfGet, tfPost } from '@/utils/apiClient.js';
 
 /**
  * Gets events.
@@ -7,4 +7,14 @@ import { tfGet } from '@/utils/apiClient.js';
  */
 export async function getEvents() {
   return tfGet('events');
+}
+
+/**
+ * Save an event
+ *
+ * @param {object} payload
+ * @returns {Promise}
+ */
+export async function saveEvent(payload) {
+  return tfPost('events', payload);
 }

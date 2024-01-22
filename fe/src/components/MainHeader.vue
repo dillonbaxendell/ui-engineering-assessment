@@ -1,8 +1,9 @@
 <template>
   <header class="main-header">
-    <HeaderMenu
-      class="header-menu"
-    />
+    <div class="header-title">
+      <ElButton class="home-button" icon="House" @click="$router.push({ name: 'Home' })" />
+      <h2>Event scheduler</h2>
+    </div>
     <div class="alerts-container">
       <ElAlert
         v-for="(alert, index) in alerts"
@@ -14,7 +15,9 @@
         @close="removeAlert(alert)"
       />
     </div>
-    <h2>Event scheduler</h2>
+    <HeaderMenu
+      class="header-menu"
+    />
   </header>
 </template>
 
@@ -45,12 +48,31 @@
   padding: 0 0 0 1em;
   background: var(--tf-white);
   box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+  display: flex;
+  justify-content: space-between;
 
   .header-menu {
-    float: right;
     border: none;
   }
+
+  .header-title {
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+  }
 }
+
+.home-button {
+  border: none;
+  padding: 0;
+  margin-right: 1em;
+
+  :deep(.el-icon) {
+    font-size: 24px;
+    color: var(--el-color-primary);
+  }
+}
+
 .alerts-container {
   position: absolute;
   top: 50%;
