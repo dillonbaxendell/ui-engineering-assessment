@@ -19,7 +19,7 @@
           </template>
         </ElMenuItem>
         <ElMenuItem
-          @click="() => $router.push({ name: 'SignOut' })"
+          @click="signOut"
         >
           <template #title>
             <ElIcon><Unlock /></ElIcon>
@@ -52,6 +52,11 @@
     },
     methods: {
       ...mapActions(useEventsStore, ['editEvent']),
+
+      signOut() {
+        this.$router.push({ name: 'Home', query: { signOut: true } })
+          .then(() => { this.$router.go(0); });
+      },
     },
   };
 </script>

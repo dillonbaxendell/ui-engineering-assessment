@@ -4,36 +4,19 @@ import {
 import { useAuthStore } from '@/stores/auth.js';
 import { config } from '@/utils/config.js';
 
-import { deleteCookie, getCookie, setCookie } from '@/utils/cookies.js';
+import { deleteCookie, setCookie } from '@/utils/cookies.js';
 
 const cookieNameSpace = config.COOKIE_NAMESPACE;
 
 /**
  * Log the user out by: update the Pinia Store, and remove cookies/local storage items
- *
- * @returns {Promise}
  */
 export function signOut() {
   const authStore = useAuthStore();
 
   authStore.$reset();
-  window.localStorage.setItem('auth', false);
+  window.localStorage.removeItem('auth');
   deleteCookie(`${cookieNameSpace}-user-id`);
-
-  return new Promise((resolve) => {
-    resolve();
-  });
-}
-
-/**
- * Get the user info.
- *
- * @returns {Promise}
- */
-export function getUser() {
-  const userId = getCookie(`${cookieNameSpace}-user-id`);
-
-  return tfGet(`users/${userId}`);
 }
 
 /**

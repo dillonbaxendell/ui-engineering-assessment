@@ -11,11 +11,16 @@
 </template>
 
 <script>
-  import { mapState } from 'pinia';
+  import { mapActions, mapState } from 'pinia';
   import { useAuthStore } from '@/stores/auth.js';
-  import { signOut } from '@/services/auth.js';
+  import { setSignedIn } from '@/services/auth.js';
+  import { getUser } from '@/services/users.js';
   import EventModal from '@/components/modals/EventModal.vue';
   import MainSidebar from '@/components/MainSidebar.vue';
+  import { getCookie } from '@/utils/cookies.js';
+  import { config } from '@/utils/config.js';
+
+  const cookieNameSpace = config.COOKIE_NAMESPACE;
 
   export default {
     name: 'MainDashboard',
@@ -26,10 +31,26 @@
     computed: {
       ...mapState(useAuthStore, ['authenticated']),
     },
+    watch: {
+      authenticated() {
+        this.$router.go();
+      },
+    },
     async created() {
-      if (this.signOut) {
-        await signOut();
+      const auth = window.localStorage.getItem('auth') === 'true';
+
+      if (auth) {
+        const userId = getCookie(`${cookieNameSpace}-user-id`);
+
+        if (userId) {
+          const data = await getUser(userId);
+
+          setSignedIn(data);
+        }
       }
+    },
+    methods: {
+      ...mapActions(useAuthStore, ['setUser']),
     },
   };
 </script>

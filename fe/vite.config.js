@@ -16,6 +16,11 @@ export default defineConfig({
       scss: true,
     },
   },
+  define: {
+    'process.env': {
+      env,
+    },
+  },
   plugins: [
     vue({
       template: {

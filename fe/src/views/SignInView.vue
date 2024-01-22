@@ -32,12 +32,6 @@
 
   export default {
     name: 'SignInView',
-    props: {
-      signOut: {
-        type: Boolean,
-        default: false,
-      },
-    },
     data() {
       return {
         signInForm: {},
