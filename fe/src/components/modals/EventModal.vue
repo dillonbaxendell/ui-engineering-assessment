@@ -48,6 +48,7 @@
 
 <script>
   import { mapActions, mapState, mapWritableState } from 'pinia';
+  import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
   import { saveEvent } from '@/services/events.js';
 
@@ -91,6 +92,7 @@
       };
     },
     computed: {
+      ...mapState(useAuthStore, ['user']),
       ...mapState(useEventsStore, ['editingEvent']),
       ...mapWritableState(useEventsStore, ['isModalVisible']),
 
@@ -117,7 +119,10 @@
       ...mapActions(useEventsStore, ['cancelEdit']),
 
       confirmModal() {
-        saveEvent(this.eventForm);
+        saveEvent({
+          user_id: this.user.id,
+          ...this.eventForm,
+        });
         this.isModalVisible = false;
         this.$emit('reload');
       },

@@ -77,7 +77,7 @@ module V1
     private
 
     def event_params
-      params.require(:event).permit(:name, :location, :start_date)
+      params.require(:event).permit(:name, :location, :start_date, :user_id)
     end
   end
 end

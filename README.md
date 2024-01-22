@@ -18,10 +18,7 @@
   - this will start both servers and should open the browser
 
 ### TODO
-- add owner column to events table
-- add description column to events table
 - endpoint to retrieve owned events
 - endpoint for past events?
 - endpoint for sign-in (look up user by email)
-- fix new event form validation
 - create "add attendee" workflow
