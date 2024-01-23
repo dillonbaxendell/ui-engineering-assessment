@@ -27,6 +27,7 @@
 
 <script>
   import { mapActions } from 'pinia';
+  import { useAlertsStore } from '@/stores/alerts.js';
   import { signIn, setSignedIn } from '@/services/auth.js';
   import { useAuthStore } from '@/stores/auth.js';
 
@@ -46,13 +47,21 @@
     },
     methods: {
       ...mapActions(useAuthStore, ['setUser']),
+      ...mapActions(useAlertsStore, ['addAlert']),
 
-      async doSignIn(formData) {
-        const data = await signIn(formData);
+      async doSignIn() {
+        try {
+          const data = await signIn(this.signInForm.email_address);
 
-        this.setUser(data);
-        setSignedIn(data);
-        this.$router.replace({ name: 'Home' });
+          this.setUser(data);
+          setSignedIn(data);
+          this.$router.replace({ name: 'Home' });
+        } catch {
+          this.addAlert({
+            title: 'User not found. Please verify your email address',
+            type: 'error',
+          });
+        }
       },
     },
   };

@@ -1,5 +1,5 @@
 import {
-  tfGet,
+  tfPost,
 } from '@/utils/apiClient.js';
 import { useAuthStore } from '@/stores/auth.js';
 import { config } from '@/utils/config.js';
@@ -25,19 +25,22 @@ export function signOut() {
  * @param {object} user
  */
 export function setSignedIn(user) {
-  const authStore = useAuthStore();
+  if (user.id) {
+    const authStore = useAuthStore();
 
-  authStore.setAuthStatus(true);
-  authStore.setUser(user);
-  window.localStorage.setItem('auth', true);
-  setCookie(`${cookieNameSpace}-user-id`, user.id);
+    authStore.setAuthStatus(true);
+    authStore.setUser(user);
+    window.localStorage.setItem('auth', true);
+    setCookie(`${cookieNameSpace}-user-id`, user.id);
+  }
 }
 
 /**
  * Sign the user in.
  *
+ * @param {string} email_address
  * @returns {object}
  */
-export function signIn() {
-  return tfGet('users/1');
+export function signIn(email_address) {
+  return tfPost('login', { email_address });
 }

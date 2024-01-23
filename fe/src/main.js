@@ -21,6 +21,7 @@ import {
   ElTabPane,
   ElTable,
   ElTableColumn,
+  ElTag,
   ElTooltip,
 } from 'element-plus';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
@@ -55,6 +56,7 @@ app.use(ElTabs);
 app.use(ElTabPane);
 app.use(ElTable);
 app.use(ElTableColumn);
+app.use(ElTag);
 app.use(ElTooltip);
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

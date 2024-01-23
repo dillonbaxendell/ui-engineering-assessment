@@ -4,13 +4,12 @@
     :title="`${eventType} event`"
     width="30%"
     append-to-body
-    @close="cancelEdit"
+    @close="resetForm"
   >
     <ElForm
-      ref="form"
+      ref="formRef"
       :model="eventForm"
       :rules="rules"
-      label-width="120px"
       @validate="validateHandler"
     >
       <ElFormItem label="Event name" prop="name">
@@ -26,22 +25,44 @@
           placeholder="Pick a day"
         />
       </ElFormItem>
+      <ElFormItem
+        class="desc-field"
+        label="Event description"
+        prop="description"
+        label-width="100%"
+      >
+        <ElInput
+          v-model="eventForm.description"
+          autosize
+          type="textarea"
+        />
+      </ElFormItem>
     </ElForm>
     <template #footer>
-      <span class="modal-footer">
+      <div class="modal-footer">
+        <span>
+          <ElButton
+            @click="isModalVisible = false"
+          >
+            Cancel
+          </ElButton>
+          <ElButton
+            type="primary"
+            :disabled="!isFormValid"
+            @click="confirmModal"
+          >
+            Save
+          </ElButton>
+        </span>
         <ElButton
-          @click="isModalVisible = false"
+          v-if="eventForm.id"
+          link
+          type="danger"
+          @click="deleteEvent"
         >
-          Cancel
+          Delete Event
         </ElButton>
-        <ElButton
-          type="primary"
-          :disabled="!isFormValid"
-          @click="confirmModal"
-        >
-          Confirm
-        </ElButton>
-      </span>
+      </div>
     </template>
   </ElDialog>
 </template>
@@ -50,7 +71,7 @@
   import { mapActions, mapState, mapWritableState } from 'pinia';
   import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
-  import { saveEvent } from '@/services/events.js';
+  import { deleteEvent, saveEvent } from '@/services/events.js';
 
   export default {
     name: 'EventModal',
@@ -106,25 +127,38 @@
       },
     },
     watch: {
-      editingEvent() {
+      async editingEvent() {
         this.eventForm = {
           name: '',
           location: '',
           start_date: '',
           ...this.editingEvent,
         };
+
+        if (this.editingEvent) {
+          this.$nextTick(async () => {
+            await this.$refs.formRef.validate();
+          });
+        }
       },
     },
     methods: {
       ...mapActions(useEventsStore, ['cancelEdit']),
 
-      confirmModal() {
-        saveEvent({
+      async confirmModal() {
+        await saveEvent({
           user_id: this.user.id,
           ...this.eventForm,
         });
         this.isModalVisible = false;
         this.$emit('reload');
+      },
+      async deleteEvent() {
+        if (this.editingEvent) {
+          await deleteEvent(this.eventForm.id);
+          this.isModalVisible = false;
+          this.$emit('reload');
+        }
       },
       checkDate(rule, value, callback) {
         if (Date.parse(value) <= Date.now()) {
@@ -135,35 +169,39 @@
       validateHandler(propName, isValid) {
         this.formValidity[propName] = isValid;
       },
+      resetForm() {
+        this.eventForm = {
+          name: '',
+          location: '',
+          start_date: '',
+        };
+        this.formValidity = {
+          name: false,
+          location: false,
+          start_date: false,
+        };
+      },
     },
   };
 </script>
 
 <style lang="scss" scoped>
-.main-header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  padding: 0 0 0 1em;
-  background: var(--tf-white);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
-
-  .header-menu {
-    float: right;
-    border: none;
-  }
+:deep(.el-form-item__label) {
+  width: 120px;
 }
-.alerts-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
-  :deep(.el-alert) {
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row-reverse;
+}
 
-    &:not(.el-alert--success) {
-      padding: .5em 1.5em .5em .5em;
-    }
+.desc-field {
+  flex-direction: column;
+  text-align: left;
+
+  :deep(.el-form-item__label) {
+    display: block;
   }
 }
 </style>

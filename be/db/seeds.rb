@@ -5,5 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.create({ first_name: 'Jane', last_name: 'Doe', email_address: 'undeliverable@threeflow.com' })
+User.create({ first_name: 'Jane', last_name: 'Doe', email_address: 'undeliverable+jane@threeflow.com' })
+User.create({ first_name: 'John', last_name: 'Doe', email_address: 'undeliverable+john@threeflow.com' })
 Event.create({ user_id: 1, name: 'Meetup', location: 'Threeflow', start_date: '2024-05-20T00:00:00.000Z' })

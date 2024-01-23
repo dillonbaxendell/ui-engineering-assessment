@@ -19,6 +19,3 @@
 
 ### TODO
 - endpoint to retrieve owned events
-- endpoint for past events?
-- endpoint for sign-in (look up user by email)
-- create "add attendee" workflow

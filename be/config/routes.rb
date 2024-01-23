@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   namespace :v1 do
+    post "login", to: "users#login"
+  
     resources :users do
       get "events", on: :member, to: "users#events"
       post "events", on: :member, to: "users#join_event"

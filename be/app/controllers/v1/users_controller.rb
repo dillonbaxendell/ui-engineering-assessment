@@ -11,8 +11,21 @@ module V1
 
     # GET /v1/users/:id
     def show
-      user = User.find(params[:id])
-      render json: user.to_json
+      user = User.includes(:events).find(params[:id])
+      p user.events
+      render json: user.to_json( :include => [:events] )
+    end
+
+    # POST /v1/login
+    def login
+      user = User.find_by(email_address: params[:email_address])
+
+      if (!user)
+        message = "User not found."
+        render json: { error: message }, status: 400
+      else
+        render json: user.to_json
+      end
     end
 
     # POST /v1/users

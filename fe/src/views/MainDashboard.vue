@@ -41,9 +41,9 @@
         const userId = getCookie(`${cookieNameSpace}-user-id`);
 
         if (userId) {
-          const data = await getUser(userId);
+          const user = await getUser(userId);
 
-          setSignedIn(data);
+          setSignedIn(user);
         }
       }
 

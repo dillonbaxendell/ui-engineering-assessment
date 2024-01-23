@@ -5,7 +5,7 @@ module V1
 
     # GET /v1/events
     def index
-      events = Event.all
+      events = Event.left_outer_joins(:attendees).select('events.*, COUNT(attendees.id) as attendee_count').group('events.id')
       render json: events.to_json
     end
 
@@ -50,7 +50,7 @@ module V1
       event = Event.find(params[:event_id])
       attendees = event.attendees
 
-      render json: attendees.to_jsonwww
+      render json: attendees.to_json
     end
 
     # POST /v1/events/:event_id/users
@@ -68,16 +68,18 @@ module V1
 
     # DELETE /v1/events/:event_id/users/:user_id
     def destroy
-      attendee = Attendee.find(params[:id])
-      attendee.destroy
+      attendees = Attendee.where(event_id: params[:id])
+      if (attendees)
+        attendees.destroy
+      end
 
-      render json: attendee.to_json
+      render json: attendees.to_json
     end
 
     private
 
     def event_params
-      params.require(:event).permit(:name, :location, :start_date, :user_id)
+      params.require(:event).permit(:name, :location, :description, :start_date, :user_id, :attendees)
     end
   end
 end
