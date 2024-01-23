@@ -6,7 +6,9 @@
       @sort-change="doSort"
     >
       <ElTableColumn prop="id" label="ID" />
-      <ElTableColumn prop="name" label="Name" sortable="custom" />
+      <ElTableColumn prop="first_name" label="First name" />
+      <ElTableColumn prop="last_name" label="Last name" />
+      <ElTableColumn prop="email_address" label="Email address" sortable="custom" />
       <ElTableColumn>
         <template #default="scope">
           <ElButton
@@ -70,7 +72,7 @@
         }
       },
       async deleteUser(user) {
-        deleteUser(user);
+        await deleteUser(user);
         this.loadUsers();
       },
       doSort({ prop, order }) {

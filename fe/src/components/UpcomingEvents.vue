@@ -82,6 +82,7 @@
     },
     methods: {
       ...mapActions(useAuthStore, ['setUser']),
+      ...mapActions(useEventsStore, ['editEvent']),
       dateFormatter(dateString) {
         return formatDate(dateString);
       },

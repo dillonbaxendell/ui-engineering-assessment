@@ -14,19 +14,26 @@
       </ElFormItem>
     </ElForm>
     <template #footer>
-      <ElButton
-        type="primary"
-        :disabled="!signInForm.email_address"
-        @click="doSignIn"
-      >
-        Confirm
-      </ElButton>
+      <div class="card-footer">
+        <ElButton
+          @click="isRegisterModalVisible = true"
+        >
+          Register
+        </ElButton>
+        <ElButton
+          type="primary"
+          :disabled="!signInForm.email_address"
+          @click="doSignIn"
+        >
+          Sign In
+        </ElButton>
+      </div>
     </template>
   </ElCard>
 </template>
 
 <script>
-  import { mapActions } from 'pinia';
+  import { mapActions, mapWritableState } from 'pinia';
   import { useAlertsStore } from '@/stores/alerts.js';
   import { signIn, setSignedIn } from '@/services/auth.js';
   import { useAuthStore } from '@/stores/auth.js';
@@ -44,6 +51,9 @@
           }],
         },
       };
+    },
+    computed: {
+      ...mapWritableState(useAuthStore, ['isRegisterModalVisible']),
     },
     methods: {
       ...mapActions(useAuthStore, ['setUser']),
@@ -74,5 +84,10 @@
     left: 50%;
     width: 420px;
     transform: translateX(-50%);
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
   }
 </style>

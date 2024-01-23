@@ -37,7 +37,7 @@
           </template>
         </ElMenuItem>
         <ElMenuItem
-          @click="isModalVisible = true"
+          @click="isRegisterModalVisible = true"
         >
           <template #title>
             <ElIcon><User /></ElIcon>
@@ -46,29 +46,20 @@
         </ElMenuItem>
       </template>
     </ElSubMenu>
-    <RegisterModal v-model="isModalVisible" />
   </ElMenu>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'pinia';
+  import { mapActions, mapState, mapWritableState } from 'pinia';
   import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
   import { signOut } from '@/services/auth.js';
-  import RegisterModal from '@/components/modals/RegisterModal.vue';
 
   export default {
     name: 'MainHeader',
-    components: {
-      RegisterModal,
-    },
-    data() {
-      return {
-        isModalVisible: false,
-      };
-    },
     computed: {
       ...mapState(useAuthStore, ['authenticated']),
+      ...mapWritableState(useAuthStore, ['isRegisterModalVisible']),
     },
     methods: {
       ...mapActions(useEventsStore, ['editEvent']),
