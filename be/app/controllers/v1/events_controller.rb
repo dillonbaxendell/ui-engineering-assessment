@@ -66,16 +66,6 @@ module V1
       end
     end
 
-    # DELETE /v1/events/:event_id/users/:user_id
-    def destroy
-      attendees = Attendee.where(event_id: params[:id])
-      if (attendees)
-        attendees.destroy
-      end
-
-      render json: attendees.to_json
-    end
-
     private
 
     def event_params
