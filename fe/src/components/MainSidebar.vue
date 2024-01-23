@@ -30,10 +30,18 @@
 
 <script>
   export default {
-    name: 'App',
+    name: 'MainSidebar',
     computed: {
       activeTab() {
-        return this.$route.name?.match(/event/i) ? 'Events' : 'Users';
+        if (this.$route.name?.match(/event/i)) {
+          return 'Events';
+        }
+
+        if (this.$route.name?.match(/user/i)) {
+          return 'Users';
+        }
+
+        return null;
       },
     },
   };
@@ -41,9 +49,14 @@
 
 <style lang="scss">
   .sidebar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 60px;
     display: flex;
+
     .el-menu {
-      flex: 1;
+      flex: 1 0 auto;
     }
   }
 </style>

@@ -1,4 +1,4 @@
-# Threeflow Full-Stack Challenge - Front-end
+# Threeflow Full-Stack Challenge
 
 ## Front-end
 - `/fe` directory
@@ -7,3 +7,15 @@
 
 ## Back-end
 - `/be`
+### Requirements
+- rails v7
+- sqlite3
+
+## Getting started
+- run `bash setup.sh`
+  - this will reinstall everything, overwriting data in the DB
+- run `bash start_server.sh`
+  - this will start both servers and should open the browser
+
+### TODO
+- delete user foreign key bug

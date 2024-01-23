@@ -4,10 +4,10 @@ import {
   PiniaVuePlugin,
 } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
-import { activateAxios } from '@/utils/apiClient.js';
 import {
   ElAlert,
   ElButton,
+  ElCard,
   ElDatePicker,
   ElDialog,
   ElForm,
@@ -21,6 +21,7 @@ import {
   ElTabPane,
   ElTable,
   ElTableColumn,
+  ElTag,
   ElTooltip,
 } from 'element-plus';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
@@ -29,9 +30,6 @@ import App from './App.vue';
 import router from './router.js';
 
 import './assets/styles/main.scss';
-
-// Set up axios defaults and request/response interceptors.
-activateAxios();
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -44,6 +42,7 @@ app.use(router);
 
 app.use(ElAlert);
 app.use(ElButton);
+app.use(ElCard);
 app.use(ElDatePicker);
 app.use(ElDialog);
 app.use(ElForm);
@@ -57,6 +56,7 @@ app.use(ElTabs);
 app.use(ElTabPane);
 app.use(ElTable);
 app.use(ElTableColumn);
+app.use(ElTag);
 app.use(ElTooltip);
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

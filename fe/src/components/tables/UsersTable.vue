@@ -7,13 +7,24 @@
     >
       <ElTableColumn prop="id" label="ID" />
       <ElTableColumn prop="name" label="Name" sortable="custom" />
+      <ElTableColumn>
+        <template #default="scope">
+          <ElButton
+            size="small"
+            type="danger"
+            @click="deleteUser(scope.row)"
+          >
+            Delete
+          </ElButton>
+        </template>
+      </ElTableColumn>
     </ElTable>
   </div>
 </template>
 
 <script>
   import { mapActions, mapState } from 'pinia';
-  import { getUsers } from '@/services/users.js';
+  import { getUsers, deleteUser } from '@/services/users.js';
   import { useUsersStore } from '@/stores/users.js';
   import { useAlertsStore } from '@/stores/alerts.js';
 
@@ -58,6 +69,10 @@
           });
         }
       },
+      async deleteUser(user) {
+        deleteUser(user);
+        this.loadUsers();
+      },
       doSort({ prop, order }) {
         if (order) {
           this.localUsers.sort((a, b) => {
@@ -78,6 +93,8 @@
 <style lang="scss" scoped>
 .users-table {
   height: 100%;
+  width: 100%;
   overflow: auto;
+  padding: 0 1em;
 }
 </style>

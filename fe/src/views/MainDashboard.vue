@@ -1,51 +1,94 @@
 <template>
-  <section class="tabs">
-    <ElTabs
-      v-model="$route.name"
-      @tab-change="onTabClick"
-    >
-      <ElTabPane
-        v-for="({ label, name }) in dashboards"
-        v-bind="{ label, name }"
-        :key="label"
-      />
-    </ElTabs>
-    <router-view />
-  </section>
+  <div :class="['main-container', { auth: authenticated }]">
+    <MainSidebar
+      v-if="authenticated"
+    />
+    <div class="main-content">
+      <router-view />
+    </div>
+    <EventModal @reload="loadEvents" />
+  </div>
 </template>
 
 <script>
+  import { mapActions, mapState } from 'pinia';
+  import { useAlertsStore } from '@/stores/alerts.js';
+  import { useAuthStore } from '@/stores/auth.js';
+  import { useEventsStore } from '@/stores/events.js';
+  import { setSignedIn } from '@/services/auth.js';
+  import { getEvents } from '@/services/events.js';
+  import { getUser } from '@/services/users.js';
+  import EventModal from '@/components/modals/EventModal.vue';
+  import MainSidebar from '@/components/MainSidebar.vue';
+  import { getCookie } from '@/utils/cookies.js';
+  import { config } from '@/utils/config.js';
+
+  const cookieNameSpace = config.VITE_COOKIE_NAMESPACE;
+
   export default {
     name: 'MainDashboard',
-    data: () => ({
-      dashboards: [
-        {
-          label: 'Your events',
-          name: 'MyEvents',
-        },
-        {
-          label: 'Past events',
-          name: 'PastEvents',
-        },
-      ],
-    }),
+    components: {
+      EventModal,
+      MainSidebar,
+    },
+    provide() {
+      return {
+        loadEvents: this.loadEvents,
+      };
+    },
+    computed: {
+      ...mapState(useAuthStore, ['authenticated']),
+    },
+    async created() {
+      const auth = window.localStorage.getItem('auth') === 'true';
+
+      if (auth) {
+        const userId = getCookie(`${cookieNameSpace}-user-id`);
+
+        if (userId) {
+          const user = await getUser(userId);
+
+          setSignedIn(user);
+        }
+      }
+
+      await this.loadEvents();
+    },
     methods: {
+      ...mapActions(useAuthStore, ['setUser']),
+      ...mapActions(useEventsStore, ['setEvents']),
+      ...mapActions(useAlertsStore, ['addAlert']),
       /**
-       * Evaluates the name to determine the correct route params to push.
-       *
-       * @param {object} root
-       * @param {string} root.name
+       * Load events from the server.
        */
-      async onTabClick({ name }) {
-        await this.$router.push({ name });
+      async loadEvents() {
+        try {
+          const data = await getEvents(this.eventsType);
+
+          this.setEvents(data);
+        } catch (error) {
+          this.addAlert({
+            title: 'Error retrieving events.',
+            type: 'error',
+          });
+        }
       },
     },
   };
 </script>
 
 <style lang="scss" scoped>
-.tabs {
-  flex: 1;
-  margin: 0 1em;
+.main-container {
+  display: flex;
+  height: 100%;
+
+  &.auth {
+    margin-left: 60px;
+  }
+}
+.main-content {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
 }
 </style>

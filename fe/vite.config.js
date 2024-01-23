@@ -1,18 +1,24 @@
 import { fileURLToPath, URL } from 'node:url';
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import eslint from 'vite-plugin-eslint';
 import vue from '@vitejs/plugin-vue'
+// eslint-disable-next-line import/extensions, import/no-unresolved
 import ElementPlus from 'unplugin-element-plus/vite';
 
-// https://vitejs.dev/config/
+const env = loadEnv('development', process.cwd(), '');
+
 export default defineConfig({
   build: {
     target: 'es2022',
   },
   css: {
     preprocessorOptions: {
-      scss: {
-      },
+      scss: true,
+    },
+  },
+  define: {
+    'process.env': {
+      ...env,
     },
   },
   plugins: [
@@ -31,6 +37,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  server: {
+    proxy: {
+      '^/v1': env.VITE_API_URL,
     },
   },
   test: {
