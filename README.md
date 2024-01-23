@@ -18,4 +18,4 @@
   - this will start both servers and should open the browser
 
 ### TODO
-- endpoint to retrieve owned events
+- delete user foreign key bug

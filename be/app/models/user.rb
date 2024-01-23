@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :attendees
+  has_many :attendees, dependent: :destroy
   has_many :events, through: :attendees
   # has_many :events, inverse_of: :user, dependent: :destroy
 
