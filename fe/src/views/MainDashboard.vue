@@ -31,6 +31,11 @@
       EventModal,
       MainSidebar,
     },
+    provide() {
+      return {
+        loadEvents: this.loadEvents,
+      };
+    },
     computed: {
       ...mapState(useAuthStore, ['authenticated']),
     },

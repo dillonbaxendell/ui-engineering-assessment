@@ -44,3 +44,13 @@ export function setSignedIn(user) {
 export function signIn(email_address) {
   return tfPost('login', { email_address });
 }
+
+/**
+ * Register a new user
+ *
+ * @param {object} form
+ * @returns {Promise}
+ */
+export function register(form) {
+  return tfPost('users', form);
+}

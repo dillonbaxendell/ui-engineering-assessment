@@ -27,16 +27,26 @@
           </template>
         </ElMenuItem>
       </template>
-      <ElMenuItem
-        v-if="!authenticated"
-        @click="() => $router.push({ name: 'SignIn' })"
-      >
-        <template #title>
-          <ElIcon><Lock /></ElIcon>
-          Sign In
-        </template>
-      </ElMenuItem>
+      <template v-else>
+        <ElMenuItem
+          @click="() => $router.push({ name: 'SignIn' })"
+        >
+          <template #title>
+            <ElIcon><Lock /></ElIcon>
+            Sign In
+          </template>
+        </ElMenuItem>
+        <ElMenuItem
+          @click="isModalVisible = true"
+        >
+          <template #title>
+            <ElIcon><User /></ElIcon>
+            Register
+          </template>
+        </ElMenuItem>
+      </template>
     </ElSubMenu>
+    <RegisterModal v-model="isModalVisible" />
   </ElMenu>
 </template>
 
@@ -45,9 +55,18 @@
   import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
   import { signOut } from '@/services/auth.js';
+  import RegisterModal from '@/components/modals/RegisterModal.vue';
 
   export default {
     name: 'MainHeader',
+    components: {
+      RegisterModal,
+    },
+    data() {
+      return {
+        isModalVisible: false,
+      };
+    },
     computed: {
       ...mapState(useAuthStore, ['authenticated']),
     },

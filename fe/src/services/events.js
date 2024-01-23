@@ -58,3 +58,14 @@ export async function deleteEvent(id) {
 export async function joinEvent(event_id, userId) {
   return tfPost(`users/${userId}/events`, { event_id });
 }
+
+/**
+ * Decline an event
+ *
+ * @param {number} eventId
+ * @param {number} userId
+ * @returns {Promise}
+ */
+export async function declineEvent(eventId, userId) {
+  return tfDelete(`users/${userId}/events/${eventId}`);
+}

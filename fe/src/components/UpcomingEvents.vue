@@ -66,27 +66,41 @@
 </template>
 
 <script>
-  import { mapState } from 'pinia';
+  import { mapActions, mapState } from 'pinia';
   import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
-  import { joinEvent } from '@/services/events.js';
+  import { declineEvent, joinEvent } from '@/services/events.js';
+  import { getUser } from '@/services/users.js';
   import { formatDate } from '@/utils/common.js';
 
   export default {
     name: 'UpcomingEvents',
+    inject: ['loadEvents'],
     computed: {
       ...mapState(useAuthStore, ['authenticated', 'user']),
       ...mapState(useEventsStore, ['events']),
     },
     methods: {
+      ...mapActions(useAuthStore, ['setUser']),
       dateFormatter(dateString) {
         return formatDate(dateString);
       },
       attending({ id: eventId }) {
-        return this.user.events?.findIndex(({ id }) => id === eventId);
+        return this.user.events?.findIndex(({ id }) => id === eventId) > -1;
       },
       async attendEvent(event) {
         await joinEvent(event.id, this.user.id);
+        const user = await getUser(this.user.id);
+
+        this.setUser(user);
+        this.loadEvents();
+      },
+      async declineEvent({ id }) {
+        await declineEvent(id, this.user.id);
+        const user = await getUser(this.user.id);
+
+        this.setUser(user);
+        this.loadEvents();
       },
     },
   };
