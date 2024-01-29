@@ -16,7 +16,7 @@ export const useAlertsStore = defineStore('alerts', {
 
       if (alert.type === 'success') {
         setTimeout(() => {
-          this.alerts.splice(this.alerts.indexOf(alert, 1));
+          this.alerts.splice(this.alerts.indexOf(alert), 1);
         }, 3000);
       }
     },
@@ -26,7 +26,7 @@ export const useAlertsStore = defineStore('alerts', {
      * @param {object} alert
      */
     removeAlert(alert) {
-      this.alerts.splice(this.alerts.indexOf(alert, 1));
+      this.alerts.splice(this.alerts.indexOf(alert), 1);
     },
   },
 });
