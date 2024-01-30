@@ -66,7 +66,6 @@ export function createTestWrapper({
     });
 
     await flushPromises();
-    // Mock Pinia getters by using custom createTestingPiniaGetters plugin since Pinia currently doesn't mock getters properly for Vue2 projects
     const piniaGetters = options.pinia?.getters
       ? {
         plugins: [createTestingPiniaGetters({
@@ -87,7 +86,7 @@ export function createTestWrapper({
       global: {
         mocks,
         provide: {
-          loadEvents: () => {},
+          loadEvents: () => ({}),
         },
         stubs: {
           teleport: true,
