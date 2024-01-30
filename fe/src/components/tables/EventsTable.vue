@@ -60,7 +60,7 @@
     props: {
       eventsType: {
         type: String,
-        required: true,
+        default: 'myEvents',
       },
     },
     data() {

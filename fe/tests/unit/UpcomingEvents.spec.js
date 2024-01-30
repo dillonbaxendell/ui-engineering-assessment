@@ -1,10 +1,19 @@
 import { expect, vi } from 'vitest';
 import component from '@/components/UpcomingEvents.vue';
+import App from '@/views/MainDashboard.vue';
 import { createTestWrapper } from '../utils.js';
 
-vi.mock('vue-router');
+const mockRoutePush = vi.fn();
+
+vi.mock('vue-router', async () => ({
+  RouterView: {},
+  useRouter: () => ({
+    push: mockRoutePush,
+  }),
+}));
 
 const events = [{
+  id: 1,
   name: 'Test event',
   location: 'Threeflow',
   description: 'This is a test',
@@ -25,6 +34,12 @@ describe('UpcomingEvents', () => {
     wrapper = await createTestWrapper({
       isShallow: false,
       component,
+      provide: {
+        loadEvents: () => new Promise((resolve) => {
+          resolve();
+        }),
+      },
+      parentComponent: App,
       options: {
         slots: { ...initialData.slots },
         propsData: {
@@ -33,7 +48,8 @@ describe('UpcomingEvents', () => {
         pinia: {
           initialState: {
             auth: {
-              ...initialData.user,
+              user: null,
+              ...initialData.auth,
             },
             events: {
               events: [
@@ -41,9 +57,6 @@ describe('UpcomingEvents', () => {
               ],
             },
           },
-        },
-        provide: {
-          loadEvents: vi.fn(),
         },
         stubs: {
           Calendar: {
@@ -62,7 +75,7 @@ describe('UpcomingEvents', () => {
 
   it('should render an attend button if the user is signed in', async () => {
     await createWrapper({
-      user: {
+      auth: {
         user,
         authenticated: true,
       },
@@ -73,7 +86,7 @@ describe('UpcomingEvents', () => {
 
   it('should render an edit button if the user owns the event', async () => {
     await createWrapper({
-      user: {
+      auth: {
         user: {
           ...user,
           id: 2,

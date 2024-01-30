@@ -40,10 +40,6 @@ describe('EventsTable', () => {
       },
       options: {
         slots: { ...initialData.slots },
-        propsData: {
-          eventsType: 'myEvents',
-          ...initialData.propsData,
-        },
         pinia: {
           initialState: {
             auth: {
