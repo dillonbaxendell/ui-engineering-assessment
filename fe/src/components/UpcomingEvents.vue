@@ -28,6 +28,7 @@
             <span v-if="authenticated">
               <ElButton
                 v-if="event.user_id === user.id"
+                data-test="edit-event-button"
                 type="primary"
                 @click="editEvent(event)"
               >
@@ -35,6 +36,7 @@
               </ElButton>
               <ElButton
                 v-else-if="attending(event)"
+                data-test="delete-event-button"
                 type="danger"
                 @click="declineEvent(event)"
               >
@@ -42,6 +44,7 @@
               </ElButton>
               <ElButton
                 v-else
+                data-test="attend-event-button"
                 type="success"
                 @click="attendEvent(event)"
               >
@@ -51,6 +54,7 @@
             <ElButton
               v-else
               type="primary"
+              data-test="sign-in-button"
               @click="() => $router.push({ name: 'SignIn' })"
             >
               Sign In to RSVP

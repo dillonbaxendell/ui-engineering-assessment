@@ -53,5 +53,10 @@ export default defineConfig({
       return !log.includes('Download the Vue Devtools extension')
         && !log.includes('You are running Vue in development mode.');
     },
+    server: {
+      deps: {
+        inline: ['element-plus'],
+      },
+    },
   },
 })
