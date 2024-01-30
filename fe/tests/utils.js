@@ -35,7 +35,7 @@ import { Calendar } from '@element-plus/icons-vue';
  * @param {object} options.options
  * @param {object} options.provide
  * @param {Array} options.stubs
- * @param options.parentComponent
+ * @param {object} options.parentComponent
  * @returns {object}
  */
 export function createTestWrapper({
