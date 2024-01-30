@@ -1,6 +1,5 @@
 import { expect, vi } from 'vitest';
 import component from '@/components/UpcomingEvents.vue';
-import App from '@/views/MainDashboard.vue';
 import { createTestWrapper } from '../utils.js';
 
 const mockRoutePush = vi.fn();
@@ -39,7 +38,6 @@ describe('UpcomingEvents', () => {
           resolve();
         }),
       },
-      parentComponent: App,
       options: {
         slots: { ...initialData.slots },
         propsData: {

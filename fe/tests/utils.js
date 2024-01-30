@@ -35,7 +35,6 @@ import { Calendar } from '@element-plus/icons-vue';
  * @param {object} options.options
  * @param {object} options.provide
  * @param {Array} options.stubs
- * @param {object} options.parentComponent
  * @returns {object}
  */
 export function createTestWrapper({
@@ -44,15 +43,11 @@ export function createTestWrapper({
   mocks = {},
   options = {},
   provide = {},
-  parentComponent = {
-    template: '<div />',
-  },
   stubs,
 }) {
   const mountingMethod = isShallow ? shallowMount : mount;
   const createWrapper = async () => mountingMethod(component, {
     stubs,
-    parentComponent,
     global: {
       mocks,
       provide,
