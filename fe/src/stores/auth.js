@@ -8,12 +8,19 @@ export const useAuthStore = defineStore('auth', {
 
   actions: {
     /**
+     * Set the current user
+     *
      * @param {object} user
      */
     setUser(user) {
       this.user = user;
     },
 
+    /**
+     * Set users authentication status
+     *
+     * @param {boolean} status
+     */
     setAuthStatus(status) {
       this.authenticated = status;
     },

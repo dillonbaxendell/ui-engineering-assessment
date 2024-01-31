@@ -46,7 +46,6 @@ async function getAxiosDataWithoutPayload(method, url) {
 
 /**
  * Custom "get" that returns data or throws an error.
- * [axios configs](https://axios-http.com/docs/req_config)
  *
  * @param {string} url
  * @returns {Promise}
@@ -57,7 +56,6 @@ export async function tfGet(url) {
 
 /**
  * Custom "delete" that returns data or throws an error.
- * [axios configs](https://axios-http.com/docs/req_config)
  *
  * @param {string} url
  * @param {object} config
@@ -94,7 +92,6 @@ async function getAxiosDataWithPayload(
 
 /**
  * Custom "patch" that returns data or throws an error.
- * [axios configs](https://axios-http.com/docs/req_config)
  *
  * @param {string} url
  * @param {object} payload
@@ -107,7 +104,6 @@ export async function tfPatch(url, payload, config) {
 
 /**
  * Custom "post" that returns data or throws an error.
- * [axios configs](https://axios-http.com/docs/req_config)
  *
  * @param {string} url
  * @param {object} payload
@@ -120,7 +116,6 @@ export async function tfPost(url, payload, config) {
 
 /**
  * Custom "put" that returns data or throws an error.
- * [axios configs](https://axios-http.com/docs/req_config)
  *
  * @param {string} url
  * @param {object} payload

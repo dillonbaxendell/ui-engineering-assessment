@@ -33,6 +33,9 @@
     },
     provide() {
       return {
+        /**
+         * Provide load events method to child components
+         */
         loadEvents: this.loadEvents,
       };
     },
@@ -40,18 +43,30 @@
       ...mapState(useAuthStore, ['authenticated']),
     },
     async created() {
+      /**
+       * Check user authentication status
+       */
       const auth = window.localStorage.getItem('auth') === 'true';
 
       if (auth) {
+        /**
+         * Get user id from cookie
+         */
         const userId = getCookie(`${cookieNameSpace}-user-id`);
 
         if (userId) {
+          /**
+           * Get user from API and save in store
+           */
           const user = await getUser(userId);
 
           setSignedIn(user);
         }
       }
 
+      /**
+       * Load event data into store
+       */
       await this.loadEvents();
     },
     methods: {
@@ -59,7 +74,7 @@
       ...mapActions(useEventsStore, ['setEvents']),
       ...mapActions(useAlertsStore, ['addAlert']),
       /**
-       * Load events from the server.
+       * Load events from the API
        */
       async loadEvents() {
         try {
@@ -67,6 +82,9 @@
 
           this.setEvents(data);
         } catch (error) {
+          /**
+           * Show error alert
+           */
           this.addAlert({
             title: 'Error retrieving events.',
             type: 'error',

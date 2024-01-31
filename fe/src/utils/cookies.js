@@ -1,7 +1,7 @@
 /**
- * Look a cookie and return results.
+ * Look for a cookie by name
  *
- * @param {string} name - Name of the cookie to retrieve.
+ * @param {string} name
  * @returns {string}
  */
 export function getCookie(name) {
@@ -23,20 +23,20 @@ export function getCookie(name) {
 }
 
 /**
- * Delete a specfic cookie.
+ * Delete a cookie by name
  *
- * @param {string} name - Name of the cookie to delete.
+ * @param {string} name
  */
 export function deleteCookie(name) {
   document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 
 /**
- * Set a cookie.
+ * Set a cookie
  *
- * @param {string} name - Name of the cookie to set.
- * @param {string} value - Value of the cookie to set.
- * @param {Date} expirationDate - Expiration date of the cookie (defaults to 24 hours from the time the cookie is set).
+ * @param {string} name
+ * @param {string} value
+ * @param {Date} expirationDate
  */
 export function setCookie(name, value, expirationDate = new Date(new Date().getTime() + (24 * 60 * 60 * 1000))) {
   const cookie = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/; secure;`;

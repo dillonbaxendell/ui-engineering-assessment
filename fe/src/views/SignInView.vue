@@ -42,7 +42,13 @@
     name: 'SignInView',
     data() {
       return {
+        /**
+         * Form model
+         */
         signInForm: {},
+        /**
+         * Form validation rules
+         */
         rules: {
           email_address: [{
             required: true,
@@ -59,6 +65,9 @@
       ...mapActions(useAuthStore, ['setUser']),
       ...mapActions(useAlertsStore, ['addAlert']),
 
+      /**
+       * Sign in user, set user data in store, and redirect to Home
+       */
       async doSignIn() {
         try {
           const data = await signIn(this.signInForm.email_address);
@@ -67,6 +76,9 @@
           setSignedIn(data);
           this.$router.replace({ name: 'Home' });
         } catch {
+          /**
+           * Show error alert
+           */
           this.addAlert({
             title: 'User not found. Please verify your email address',
             type: 'error',

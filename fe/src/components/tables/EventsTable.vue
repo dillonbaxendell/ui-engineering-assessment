@@ -58,6 +58,9 @@
   export default {
     name: 'EventsTable',
     props: {
+      /**
+       * Type of events to display, current or past
+       */
       eventsType: {
         type: String,
         default: 'myEvents',
@@ -65,7 +68,13 @@
     },
     data() {
       return {
+        /**
+         * Local event table data
+         */
         localEvents: [],
+        /**
+         * Tabs definition
+         */
         tabs: [
           {
             label: 'Your events',
@@ -80,6 +89,11 @@
     },
     computed: {
       ...mapState(useEventsStore, ['events']),
+      /**
+       * Filter events data based on eventsType
+       *
+       * @returns {Array}
+       */
       tableData() {
         return this.eventsType === 'pastEvents'
           ? this.localEvents.filter(({ start_date }) => Date.parse(start_date) < Date.now())
@@ -88,6 +102,9 @@
     },
     watch: {
       events: {
+        /**
+         * Watch events in store and copy changes to the local model
+         */
         handler() {
           this.localEvents = this.events?.map((event) => event) || [];
         },
@@ -98,7 +115,7 @@
     methods: {
       ...mapActions(useEventsStore, ['editEvent']),
       /**
-       * Evaluates the name to determine the correct route params to push.
+       * Route to the requested tab view on tab click
        *
        * @param {object} root
        * @param {string} root.name
@@ -106,6 +123,13 @@
       async onTabClick({ name }) {
         await this.$router.push({ name });
       },
+      /**
+       * Sort table data
+       *
+       * @param {object} root
+       * @param {string} root.prop
+       * @param {string} root.order
+       */
       doSort({ prop, order }) {
         if (order) {
           this.localEvents.sort((a, b) => {
@@ -119,6 +143,14 @@
           this.localEvents = this.events;
         }
       },
+      /**
+       * Format date helper
+       *
+       * @param {object} row
+       * @param {object} column
+       * @param {string} cellValue
+       * @returns {Date}
+       */
       dateFormatter(row, column, cellValue) {
         return formatDate(cellValue);
       },

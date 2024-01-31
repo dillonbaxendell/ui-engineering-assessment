@@ -32,6 +32,11 @@
   export default {
     name: 'MainSidebar',
     computed: {
+      /**
+       * Show the active tab based on the current route
+       *
+       * @returns {string}
+       */
       activeTab() {
         if (this.$route.name?.match(/event/i)) {
           return 'Events';
@@ -48,15 +53,15 @@
 </script>
 
 <style lang="scss">
-  .sidebar {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    top: 60px;
-    display: flex;
+.sidebar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 60px;
+  display: flex;
 
-    .el-menu {
-      flex: 1 0 auto;
-    }
+  .el-menu {
+    flex: 1 0 auto;
   }
+}
 </style>

@@ -8,7 +8,7 @@ export const useUsersStore = defineStore('users', {
 
   actions: {
     /**
-     * Set event list.
+     * Set users list.
      *
      * @param {string} users
      */

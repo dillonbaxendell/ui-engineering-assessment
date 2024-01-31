@@ -4,4 +4,5 @@
 - `npm i`
 
 ## Usage
-- `npm run dev`
+- Run dev server: `npm run dev`
+- Run unit tests: `npm run test`

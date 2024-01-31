@@ -51,13 +51,25 @@
     },
     data() {
       return {
+        /**
+         * Modal visibility state
+         */
         showModal: false,
+        /**
+         * Form field validity
+         */
         formValidity: {
           first_name: false,
           last_name: false,
           email_address: false,
         },
+        /**
+         * Form data model
+         */
         registerForm: {},
+        /**
+         * Form field validation rules
+         */
         rules: {
           first_name: [{
             required: true,
@@ -78,6 +90,11 @@
       };
     },
     computed: {
+      /**
+       * Check if the form is valid
+       *
+       * @returns {boolean}
+       */
       isFormValid() {
         return this.formValidity.first_name
           && this.formValidity.last_name
@@ -85,6 +102,9 @@
       },
     },
     watch: {
+      /**
+       * Show/hide the modal
+       */
       value() {
         this.showModal = this.value;
       },
@@ -93,6 +113,9 @@
       ...mapActions(useAuthStore, ['setUser']),
       ...mapActions(useAlertsStore, ['addAlert']),
 
+      /**
+       * Call API to register a new user, sign them in, and redirect to Home
+       */
       async doRegister() {
         try {
           const data = await register(this.registerForm);
@@ -102,18 +125,24 @@
           this.$emit('update:value', false);
           this.$router.replace({ name: 'Home' });
         } catch {
+          /**
+           * Show error alert
+           */
           this.addAlert({
             title: 'Error registering user. Have you already signed up?',
             type: 'error',
           });
         }
       },
+      /**
+       * Set form field validity
+       *
+       * @param {string} propName
+       * @param {boolean} isValid
+       */
       validateHandler(propName, isValid) {
         this.formValidity[propName] = isValid;
       },
     },
   };
 </script>
-
-<style scoped>
-</style>

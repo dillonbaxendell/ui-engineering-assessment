@@ -64,6 +64,9 @@
     methods: {
       ...mapActions(useEventsStore, ['editEvent']),
 
+      /**
+       * Call API sign out service and redirect to Home
+       */
       async signOut() {
         signOut();
         await this.$router.push({ name: 'Home' });
@@ -71,6 +74,3 @@
     },
   };
 </script>
-
-<style lang="scss" scoped>
-</style>

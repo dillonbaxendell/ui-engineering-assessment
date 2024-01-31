@@ -1,3 +1,9 @@
+/**
+ * Helper for retrieving environment variables
+ *
+ * @param {string} name
+ * @returns {string}
+ */
 const getEnv = (name) => {
   const env = {
     VITE_API_URL: import.meta.env.VITE_API_URL,
@@ -6,6 +12,11 @@ const getEnv = (name) => {
 
   return env[name];
 };
+/**
+ * Get environment variables
+ *
+ * @returns {object}
+ */
 const getConfig = () => {
   const config = {
     VITE_API_URL: getEnv('VITE_API_URL'),

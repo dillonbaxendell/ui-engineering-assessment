@@ -87,12 +87,30 @@
     methods: {
       ...mapActions(useAuthStore, ['setUser']),
       ...mapActions(useEventsStore, ['editEvent']),
+      /**
+       * Format date helper
+       *
+       * @param {string} dateString
+       * @returns {Date}
+       */
       dateFormatter(dateString) {
         return formatDate(dateString);
       },
+      /**
+       * Determine if the user is attending an event
+       *
+       * @param {object} root
+       * @param {number} root.id
+       * @returns {boolean}
+       */
       attending({ id: eventId }) {
         return this.user.events?.findIndex(({ id }) => id === eventId) > -1;
       },
+      /**
+       * Call API to mark user as attending an event then reload events
+       *
+       * @param {object} event
+       */
       async attendEvent(event) {
         await joinEvent(event.id, this.user.id);
         const user = await getUser(this.user.id);
@@ -100,6 +118,12 @@
         this.setUser(user);
         this.loadEvents();
       },
+      /**
+       * Unmark user as attending an event and reload events
+       *
+       * @param {object} root
+       * @param {number} root.id
+       */
       async declineEvent({ id }) {
         await declineEvent(id, this.user.id);
         const user = await getUser(this.user.id);
@@ -112,31 +136,31 @@
 </script>
 
 <style lang="scss" scoped>
-  .event-cards {
-    display: inline-block;
-    width: 900px;
-    padding: 1em;
+.event-cards {
+  display: inline-block;
+  width: 900px;
+  padding: 1em;
 
-    :deep(.el-card) {
-      margin: 1em 0;
-    }
+  :deep(.el-card) {
+    margin: 1em 0;
   }
+}
 
-  .card-header {
-    display: flex;
-    justify-content: space-between;
+.card-header {
+  display: flex;
+  justify-content: space-between;
 
-    .when-where {
-      text-align: right;
-    }
+  .when-where {
+    text-align: right;
   }
+}
 
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-  }
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+}
 
-  h3 {
-    margin: 0;
-  }
+h3 {
+  margin: 0;
+}
 </style>

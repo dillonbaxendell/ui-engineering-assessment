@@ -1,7 +1,7 @@
 import { tfDelete, tfGet } from '@/utils/apiClient.js';
 
 /**
- * Gets users.
+ * Gets users
  *
  * @returns {Promise}
  */
@@ -10,7 +10,7 @@ export async function getUsers() {
 }
 
 /**
- * Get the user info.
+ * Get the user info
  *
  * @param {number} userId
  * @returns {Promise}

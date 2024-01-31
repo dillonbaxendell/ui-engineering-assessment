@@ -6,23 +6,13 @@ import {
 } from '@/utils/apiClient.js';
 
 /**
- * Gets events.
+ * Gets events
  *
  * @returns {Promise}
  */
 export async function getEvents() {
   return tfGet('events');
 }
-
-/**
- * Gets events for a particular user
- *
- * @param {number} id
- * @returns {Promise}
- */
-// export async function getUserEvents(id) {
-//   return tfGet(`users/${id}/events`);
-// }
 
 /**
  * Save an event

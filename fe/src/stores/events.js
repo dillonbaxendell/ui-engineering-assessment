@@ -16,10 +16,18 @@ export const useEventsStore = defineStore('events', {
     setEvents(events) {
       this.events.splice(0, this.events.length, ...events);
     },
+    /**
+     * Set currently editing event and show edit modal
+     *
+     * @param {object} event
+     */
     editEvent(event) {
       this.editingEvent = event;
       this.isModalVisible = true;
     },
+    /**
+     * Clear editing event and hide modal
+     */
     cancelEdit() {
       this.editingEvent = null;
       this.isModalVisible = false;

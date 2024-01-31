@@ -1,3 +1,9 @@
+/**
+ * Date formatting helper
+ *
+ * @param {string} dateString
+ * @returns {Date}
+ */
 export const formatDate = (dateString) => {
   const timezoneOffset = new Date().getTimezoneOffset() / 60;
   const timezoneString = `${timezoneOffset > 0 ? '-' : '+'}${(`0${timezoneOffset}`).slice(-2)}:00`;

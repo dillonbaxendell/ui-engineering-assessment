@@ -36,7 +36,7 @@ export function setSignedIn(user) {
 }
 
 /**
- * Sign the user in.
+ * Sign the user in
  *
  * @param {string} email_address
  * @returns {object}

@@ -34,6 +34,9 @@
     name: 'UsersTable',
     data() {
       return {
+        /**
+         * Local users table data
+         */
         localUsers: null,
       };
     },
@@ -42,6 +45,9 @@
     },
     watch: {
       users: {
+        /**
+         * Update localUsers when store data changes
+         */
         handler() {
           this.localUsers = this.users.map((user) => user);
         },
@@ -50,6 +56,9 @@
       },
     },
     async created() {
+      /**
+       * Load users from API on load
+       */
       await this.loadUsers();
     },
     methods: {
@@ -57,7 +66,7 @@
       ...mapActions(useUsersStore, ['setUsers']),
 
       /**
-       * Load users from the server.
+       * Load users from the API and save them in the store
        */
       async loadUsers() {
         try {
@@ -65,16 +74,31 @@
 
           this.setUsers(data);
         } catch (error) {
+          /**
+           * Show error alert
+           */
           this.addAlert({
             title: 'Error retrieving users.',
             type: 'error',
           });
         }
       },
+      /**
+       * Delete user and reload users list
+       *
+       * @param {object} user
+       */
       async deleteUser(user) {
         await deleteUser(user);
         this.loadUsers();
       },
+      /**
+       * Custom table sort method
+       *
+       * @param {object} root
+       * @param {string} root.prop
+       * @param {string} root.order
+       */
       doSort({ prop, order }) {
         if (order) {
           this.localUsers.sort((a, b) => {

@@ -7,7 +7,7 @@ export const useAlertsStore = defineStore('alerts', {
 
   actions: {
     /**
-     * Add an alert object and remove it if it's a success message.
+     * Add an alert object and remove it if it's a success message
      *
      * @param {object} alert
      */
@@ -21,7 +21,7 @@ export const useAlertsStore = defineStore('alerts', {
       }
     },
     /**
-     * Remove an alert when the user closes it.
+     * Remove an alert when the user closes it
      *
      * @param {object} alert
      */

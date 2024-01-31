@@ -49,7 +49,7 @@
           <ElButton
             type="primary"
             :disabled="!isFormValid"
-            @click="confirmModal"
+            @click="saveEvent"
           >
             Save
           </ElButton>
@@ -80,16 +80,25 @@
     ],
     data() {
       return {
+        /**
+         * Event form data model
+         */
         eventForm: {
           name: '',
           location: '',
           start_date: '',
         },
+        /**
+         * Validity state of form fields
+         */
         formValidity: {
           name: false,
           location: false,
           start_date: false,
         },
+        /**
+         * Form field validation rules
+         */
         rules: {
           name: [{
             required: true,
@@ -117,9 +126,19 @@
       ...mapState(useEventsStore, ['editingEvent']),
       ...mapWritableState(useEventsStore, ['isModalVisible']),
 
+      /**
+       * Helper for header text
+       *
+       * @returns {boolean}
+       */
       eventType() {
         return this.editingEvent ? 'Edit' : 'New';
       },
+      /**
+       * Form validity helper
+       *
+       * @returns {boolean}
+       */
       isFormValid() {
         return this.formValidity.name
           && this.formValidity.location
@@ -127,6 +146,9 @@
       },
     },
     watch: {
+      /**
+       * When an event is being edited, set the form valus
+       */
       async editingEvent() {
         this.eventForm = {
           name: '',
@@ -135,6 +157,9 @@
           ...this.editingEvent,
         };
 
+        /**
+         * Validate form fields on load when editing to enable Submit button
+         */
         if (this.editingEvent) {
           this.$nextTick(async () => {
             await this.$refs.formRef.validate();
@@ -145,7 +170,10 @@
     methods: {
       ...mapActions(useEventsStore, ['cancelEdit']),
 
-      async confirmModal() {
+      /**
+       * Call saveEvent service
+       */
+      async saveEvent() {
         await saveEvent({
           user_id: this.user.id,
           ...this.eventForm,
@@ -153,6 +181,10 @@
         this.isModalVisible = false;
         this.$emit('reload');
       },
+
+      /**
+       * Call delete event service
+       */
       async deleteEvent() {
         if (this.editingEvent) {
           await deleteEvent(this.eventForm.id);
@@ -160,15 +192,32 @@
           this.$emit('reload');
         }
       },
+      /**
+       * Custom form field validator
+       * Validate that the selected date is not in the past
+       *
+       * @param {object} rule
+       * @param {string} value
+       * @param {Function} callback
+       */
       checkDate(rule, value, callback) {
         if (Date.parse(value) <= Date.now()) {
           callback(new Error('Start date must be in the future.'));
         }
         callback();
       },
+      /**
+       * Set form field validity
+       *
+       * @param {string} propName
+       * @param {boolean} isValid
+       */
       validateHandler(propName, isValid) {
         this.formValidity[propName] = isValid;
       },
+      /**
+       * Reset form to default values when the modal closes
+       */
       resetForm() {
         this.eventForm = {
           name: '',
