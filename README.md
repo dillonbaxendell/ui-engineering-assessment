@@ -17,7 +17,7 @@
 - run `bash start_server.sh`
   - this will start both servers and should open the browser
 
-### Support requests
+## Support requests
 **Bug 1**
 > I'm having trouble sorting the table of events when viewing events I've created. Sometimes they're sorted correctly but other times they aren't.
 
