@@ -35,7 +35,7 @@ export async function saveEvent(payload) {
  * @returns {Promise}
  */
 export async function deleteEvent(id) {
-  return tfDelete(`events/${id}`);
+  return tfGet(`events/${id}`);
 }
 
 /**
