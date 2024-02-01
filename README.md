@@ -16,6 +16,7 @@
   - this will install the dependencies and create and populate the database
 - run `bash start_server.sh`
   - this will start both servers and should open the browser
+- Sign in with one of the seed users such as `test@threeflow.com`
 
 ## Support requests
 **Bug 1**
