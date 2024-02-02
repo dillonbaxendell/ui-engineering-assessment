@@ -5,7 +5,7 @@ module V1
 
     # GET /v1/events
     def index
-      events = Event.left_outer_joins(:attendees).select('events.*, COUNT(attendees.id) as attendee_count').group('events.id')
+      events = Event.with_attendee_count
       render json: events.to_json
     end
 
@@ -45,18 +45,18 @@ module V1
       render json: event.to_json
     end
 
-    # GET /v1/events/:event_id/users
+    # GET /v1/events/:id/users
     def users
-      event = Event.find(params[:event_id])
+      event = Event.find(params[:id])
       attendees = event.attendees
 
       render json: attendees.to_json
     end
 
-    # POST /v1/events/:event_id/users
+    # POST /v1/events/:id/users
     def add_user
-      event = Event.find(params[:event_id])
-      user = User.find(params[:email_address])
+      event = Event.find(params[:id])
+      user = User.find_by(email_address: params[:email_address])
       attendee = Attendee.new(event: event, user: user)
 
       if attendee.save
