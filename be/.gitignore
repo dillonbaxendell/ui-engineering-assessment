@@ -39,3 +39,6 @@
 /Keys/*
 .idea
 .vscode/
+/config/credentials/staging.key
+
+/config/credentials/development.key
