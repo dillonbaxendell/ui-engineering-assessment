@@ -14,3 +14,4 @@ event_3 = Event.create({ user_id: 1, name: 'New Features Project', location: 'Th
 event_4 = Event.create({ user_id: 2, name: 'Celebration', location: 'Threeflow', start_date: '2025-01-01T00:00:00.000Z' })
 Attendee.create({ user_id: user_2.id, event_id: event_1.id })
 Attendee.create({ user_id: user_2.id, event_id: event_2.id })
+Attendee.create({ user_id: user_3.id, event_id: event_2.id })
