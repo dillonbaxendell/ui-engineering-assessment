@@ -3,6 +3,7 @@
     v-if="events"
     class="event-cards"
   >
+    <h3>Upcoming Events</h3>
     <ElCard
       v-for="event in events"
       :key="event.id"
