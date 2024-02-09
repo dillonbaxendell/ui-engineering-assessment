@@ -84,8 +84,13 @@
     computed: {
       ...mapState(useAuthStore, ['authenticated', 'user']),
       ...mapState(useEventsStore, ['events']),
+      /**
+       * List of attendee names pulled from the API
+       *
+       * @returns {Array}
+       */
       attendeesList() {
-        return this.event.attendees?.map(({ first_name, last_name }) => `${first_name} ${last_name}`);
+        return this.event.attendee_users?.map(({ first_name, last_name }) => `${first_name} ${last_name}`).toString();
       },
     },
     async created() {
