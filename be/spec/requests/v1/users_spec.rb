@@ -102,10 +102,10 @@ describe "Users API", type: :request do
     end
   end
 
-  describe "POST /v1/users/:id/events/:event_id" do
+  describe "POST /v1/users/:id/events" do
     let(:event) { create(:event) }
     let(:described_request) do
-      post "/v1/users/#{user_1.id}/events/#{event.id}"
+      post "/v1/users/#{user_1.id}/events", params: { event_id: event.id }
       response
     end
 
