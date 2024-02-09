@@ -73,21 +73,6 @@ describe "Events API", type: :request do
     end
   end
 
-  describe "GET /v1/events/:id/users" do
-    let!(:user)  { create(:user) }
-    let!(:event) { create(:event) }
-    let!(:attendee) { create(:attendee, user: user, event: event) }
-    let(:described_request) do
-      get "/v1/events/#{event.id}/users"
-      response
-    end
-
-    it "returns all attendees for an event" do
-      expect(described_request).to have_http_status(:ok)
-      expect(response.body).to include(attendee.to_json)
-    end
-  end
-
   describe "POST /v1/events/:id/users/" do
     let!(:user)  { create(:user) }
     let!(:event) { create(:event) }
