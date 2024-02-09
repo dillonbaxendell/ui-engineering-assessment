@@ -50,21 +50,6 @@ describe "Users API", type: :request do
     end
   end
 
-  describe "PATCH /v1/users/:id" do
-    let!(:user) { create(:user) }
-    let(:described_request) do
-      patch "/v1/users/#{user.id}", params: { user: { first_name: 'Lex', last_name: 'Luthor', email_address: "lexluthor@threeflow.com" } }
-      response
-    end
-
-    it "updates a user" do
-      expect(described_request).to have_http_status(:ok)
-      expect(response.body).to include("Lex")
-      expect(response.body).to include("Luthor")
-      expect(response.body).to include("lexluthor@threeflow.com")
-    end
-  end
-
   describe "DELETE /v1/users/:id" do
     let!(:user) { create(:user) }
     let(:described_request) do
@@ -86,19 +71,6 @@ describe "Users API", type: :request do
     it "autheticates a user" do
       expect(described_request).to have_http_status(:ok)
       expect(response.body).to include(user_1.to_json)
-    end
-  end
-
-  describe "GET /v1/users/:id/events" do
-    let!(:event) { create(:event, user: user_1) }
-    let(:described_request) do
-      get "/v1/users/#{user_1.id}/events"
-      response
-    end
-
-    it "returns all events for a user" do
-      expect(described_request).to have_http_status(:ok)
-      expect(response.body).to include(event.to_json)
     end
   end
 

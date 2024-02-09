@@ -45,19 +45,6 @@ module V1
       render json: event.to_json
     end
 
-    # POST /v1/events/:id/users
-    def add_user
-      event = Event.find(params[:id])
-      user = User.find_by(email_address: params[:email_address])
-      attendee = Attendee.new(event: event, user: user)
-
-      if attendee.save
-        render json: attendee.to_json
-      else
-        render json: attendee.errors.to_json
-      end
-    end
-
     private
 
     def event_params
