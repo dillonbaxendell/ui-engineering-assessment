@@ -72,17 +72,4 @@ describe "Events API", type: :request do
       expect { described_request }.to change(Event, :count).by(-1)
     end
   end
-
-  describe "POST /v1/events/:id/users/" do
-    let!(:user)  { create(:user) }
-    let!(:event) { create(:event) }
-    let(:described_request) do
-      post "/v1/events/#{event.id}/users", params: { email_address: user.email_address }
-      response
-    end
-
-    it "add the user as an attendee for the event" do
-      expect { described_request }.to change(Attendee, :count).by(1)
-    end
-  end
 end

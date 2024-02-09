@@ -6,15 +6,11 @@ Rails.application.routes.draw do
   namespace :v1 do
     post "login", to: "users#login"
   
-    resources :users do
-      get "events", on: :member, to: "users#events"
+    resources :users, only: [:index, :show, :create, :destroy] do
       post "events", on: :member, to: "users#join_event"
       delete "events/:event_id", on: :member, to: "users#leave_event"
     end
 
-    resources :events do
-      post "users", on: :member, to: "events#add_user"
-      delete "users/:user_id", on: :member, to: "events#remove_user"
-    end
+    resources :events
   end
 end

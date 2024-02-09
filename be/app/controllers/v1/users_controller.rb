@@ -38,30 +38,12 @@ module V1
       end
     end
 
-    # PATCH /v1/users/:id
-    def update
-      user = User.find(params[:id])
-
-      if user.update(user_params)
-        render json: user.to_json
-      else
-        render json: user.errors.to_json
-      end
-    end
-
     # DELETE /v1/users/:id
     def destroy
       user = User.find(params[:id])
       user.destroy
 
       render json: user.to_json
-    end
-
-    # GET /v1/users/:id/events
-    def events
-      user = User.find(params[:id])
-
-      render json: user.events.to_json
     end
 
     # POST /v1/users/:id/events/:event_id
