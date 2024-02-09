@@ -15,6 +15,16 @@ export async function getEvents() {
 }
 
 /**
+ * Gets single event
+ *
+ * @param {number} id
+ * @returns {Promise}
+ */
+export async function getEvent(id) {
+  return tfGet(`events/${id}`);
+}
+
+/**
  * Save an event
  *
  * @param {object} payload

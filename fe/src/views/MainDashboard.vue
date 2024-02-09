@@ -63,11 +63,6 @@
           setSignedIn(user);
         }
       }
-
-      /**
-       * Load event data into store
-       */
-      await this.loadEvents();
     },
     methods: {
       ...mapActions(useAuthStore, ['setUser']),
