@@ -56,6 +56,13 @@ export const routes = [
     redirect: '/events/my-events',
     children: [
       {
+        path: ':eventId',
+        name: 'ViewEvent',
+        beforeEnter: requireAuth,
+        component: () => import('@/components/ViewEvent.vue'),
+        props: true,
+      },
+      {
         path: 'my-events',
         name: 'MyEvents',
         beforeEnter: requireAuth,

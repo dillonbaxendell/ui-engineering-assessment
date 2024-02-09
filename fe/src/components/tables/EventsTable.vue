@@ -57,6 +57,7 @@
 
   export default {
     name: 'EventsTable',
+    inject: ['loadEvents'],
     props: {
       /**
        * Type of events to display, current or past
@@ -112,6 +113,12 @@
         deep: true,
       },
     },
+    async created() {
+      /**
+       * Load event data into store
+       */
+      await this.loadEvents();
+    },
     methods: {
       ...mapActions(useEventsStore, ['editEvent']),
       /**
@@ -137,7 +144,7 @@
               return a[prop] > b[prop] ? 1 : -1;
             }
 
-            return a[prop] < b[prop] ? 1 : -1;
+            return a[prop] > b[prop] ? 1 : -1;
           });
         } else {
           this.localEvents = this.events;
