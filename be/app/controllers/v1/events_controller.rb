@@ -45,14 +45,6 @@ module V1
       render json: event.to_json
     end
 
-    # GET /v1/events/:id/users
-    def users
-      event = Event.find(params[:id])
-      attendees = event.attendees
-
-      render json: attendees.to_json
-    end
-
     # POST /v1/events/:id/users
     def add_user
       event = Event.find(params[:id])
