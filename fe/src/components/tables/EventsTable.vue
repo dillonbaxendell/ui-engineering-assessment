@@ -59,6 +59,7 @@
 
   export default {
     name: 'EventsTable',
+    inject: ['loadEvents'],
     props: {
       /**
        * Type of events to display, current or past
@@ -114,6 +115,12 @@
         immediate: true,
         deep: true,
       },
+    },
+    async created() {
+      /**
+       * Load event data into store
+       */
+      await this.loadEvents();
     },
     methods: {
       ...mapActions(useEventsStore, ['editEvent']),
