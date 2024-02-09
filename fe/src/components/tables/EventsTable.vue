@@ -144,7 +144,7 @@
               return a[prop] > b[prop] ? 1 : -1;
             }
 
-            return a[prop] < b[prop] ? 1 : -1;
+            return a[prop] > b[prop] ? 1 : -1;
           });
         } else {
           this.localEvents = this.events;
