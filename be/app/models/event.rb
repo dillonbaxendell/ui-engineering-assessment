@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   has_many :attendees, dependent: :destroy
+  has_many :attendee_users, through: :attendees, source: :user
   belongs_to :user, foreign_key: :user_id, class_name: "User", inverse_of: :events
 
   validates :name, :location, :start_date, presence: true
