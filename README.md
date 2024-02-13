@@ -13,7 +13,7 @@
     - [Feature request 1](#feature-request-1)
     - [Feature request 2](#feature-request-2)
     - [Feature request 3](#feature-request-3)
-    - [Feature request 3](#feature-request-3-1)
+    - [Feature request 4](#feature-request-4)
 
 ## Front-end
 - `/fe` directory
@@ -132,7 +132,7 @@ I am signed in and viewing a specific event
 I should see a list of attendees
 
 ---
-### Feature request 3
+### Feature request 4
 **Feature request:**
 In order to provide a better user experience we need to add pagination to the Event index page (GET /v1/events).
 `curl --location 'http://localhost:3000/v1/events/'`
