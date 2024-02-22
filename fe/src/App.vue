@@ -2,7 +2,7 @@
   <div class="main">
     <MainHeader />
     <router-view />
-    <RegisterModal v-model="isRegisterModalVisible" />
+    <RegisterModal />
   </div>
 </template>
 

@@ -11,8 +11,8 @@ module V1
 
     # GET /v1/users/:id
     def show
-      user = User.includes(:events).find(params[:id])
-      render json: user.to_json( :include => [:events] )
+      user = User.includes(:attendees).find(params[:id])
+      render json: user.to_json( :include => [:attendees] )
     end
 
     # POST /v1/login

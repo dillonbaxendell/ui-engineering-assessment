@@ -43,6 +43,7 @@
                 v-else-if="attending(event)"
                 data-test="delete-event-button"
                 type="danger"
+                @click="declineEvent(event)"
               >
                 Decline
               </ElButton>
@@ -114,7 +115,7 @@
        * @returns {boolean}
        */
       attending({ id: eventId }) {
-        return this.user.events?.findIndex(({ id }) => id === eventId) > -1;
+        return this.user.attendees?.findIndex(({ event_id: id }) => id === eventId) > -1;
       },
       /**
        * Call API to mark user as attending an event then reload events

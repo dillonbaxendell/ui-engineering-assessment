@@ -1,10 +1,10 @@
 <template>
   <ElDialog
-    v-model="showModal"
+    v-model="isRegisterModalVisible"
     title="Sign up"
     width="30%"
     append-to-body
-    @close="() => $emit('update:value', false)"
+    @close="() => isRegisterModalVisible = false"
   >
     <ElForm
       ref="form"
@@ -36,25 +36,15 @@
 </template>
 
 <script>
-  import { mapActions } from 'pinia';
+  import { mapActions, mapWritableState } from 'pinia';
   import { useAlertsStore } from '@/stores/alerts.js';
   import { register, setSignedIn } from '@/services/auth.js';
   import { useAuthStore } from '@/stores/auth.js';
 
   export default {
     name: 'RegisterModal',
-    props: {
-      value: {
-        type: Boolean,
-        default: false,
-      },
-    },
     data() {
       return {
-        /**
-         * Modal visibility state
-         */
-        showModal: false,
         /**
          * Form field validity
          */
@@ -90,6 +80,7 @@
       };
     },
     computed: {
+      ...mapWritableState(useAuthStore, ['isRegisterModalVisible']),
       /**
        * Check if the form is valid
        *
@@ -99,14 +90,6 @@
         return this.formValidity.first_name
           && this.formValidity.last_name
           && this.formValidity.email_address;
-      },
-    },
-    watch: {
-      /**
-       * Show/hide the modal
-       */
-      value() {
-        this.showModal = this.value;
       },
     },
     methods: {
@@ -122,7 +105,7 @@
 
           this.setUser(data);
           setSignedIn(data);
-          this.$emit('update:value', false);
+          this.isRegisterModalVisible = false;
           this.$router.replace({ name: 'Home' });
         } catch {
           /**

@@ -26,6 +26,14 @@ module V1
       end
     end
 
+    # DELETE /v1/events/:id
+    def destroy
+      event = Event.find(params[:id])
+      event.destroy
+
+      render json: event.to_json
+    end
+
     # PATCH /v1/events/:id
     def update
       event = Event.find(params[:id])
