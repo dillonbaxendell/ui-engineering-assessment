@@ -79,9 +79,6 @@ A third party system is submitting empty data to the "Create Event" `POST /v1/ev
 
 **GIVEN:**
 I am submitting data via the API
-```
-curl --location 'http://localhost:3000/v1/events/' --form 'event["name"]=""' --form 'event["location"]=""' --form 'event["start_date"]=""'
-```
 
 **WHEN:**
 I submit blank data for an event
