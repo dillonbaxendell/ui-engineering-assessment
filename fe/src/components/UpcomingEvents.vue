@@ -44,7 +44,7 @@
                 v-else-if="attending(event)"
                 data-test="delete-event-button"
                 type="danger"
-                @click="declineEvent()"
+                @click="declineEvent(event)"
               >
                 Decline
               </ElButton>
