@@ -37,6 +37,7 @@
         >
           <template #default="scope">
             <ElButton
+              v-if="scope.row.user_id === user.id"
               size="small"
               type="primary"
               @click="editEvent(scope.row)"
@@ -52,6 +53,7 @@
 
 <script>
   import { mapActions, mapState } from 'pinia';
+  import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
   import { formatDate } from '@/utils/common.js';
 
@@ -89,6 +91,7 @@
       };
     },
     computed: {
+      ...mapState(useAuthStore, ['user']),
       ...mapState(useEventsStore, ['events']),
       /**
        * Filter events data based on eventsType
