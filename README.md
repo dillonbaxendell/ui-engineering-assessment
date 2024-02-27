@@ -6,7 +6,7 @@
   - [Back-end](#back-end)
     - [Requirements](#requirements-1)
   - [Getting started](#getting-started)
-  - [Feature requests](#feature-requests)
+  - [Front-end challenge](#front-end-challenge)
 
 ## Front-end
 - `/fe` directory
@@ -27,17 +27,29 @@
 - run `bash start_server.sh`
   - this will start both servers and should open the browser to [localhost:8080](http://localhost:8080)
 - Sign in with one of the seed users:
-  - `test@threeflow.com`
-  - `jane@threeflow.com`
+  - `test@threeflow.com` (admin user)
+  - `jane@threeflow.com` 
   - `john@threeflow.com`
 
-# Feature requests
+# Front-end challenge
 
-## Feature Request:
+This bundle contains a very basic Ruby on Rails API server project and a small Vue 3 project. 
+
+For the front-end challenge, we’ll be asking you to add the following three features (time permitting) to the site and to submit your updated code back to us. 
+
+The Vue app will come with the Element Plus UI library already set up in the package and it's used for all of the UI elements of the project.
+
+**We want to be respectful of your time**. Please time-box to a maximum of three hours. We recommend you start with an outline on your approach for all three "tickets" so that, in case you run out of time, our interviewers can use that information to guide the conversation. 
+
+**The goal of this test is to start a conversation about your engineering skills and approaches to architecture.**
+
+## Feature requests
+
+### Feature Request:
 
 I would like the ability to delete my own events when logged in as a normal user and when logged in as an admin user, I want the ability to delete any event.
 
-### Acceptance Criteria:
+#### Acceptance Criteria:
 **GIVEN**: 
 I am viewing the Upcoming Events page while logged in as an Admin User
 
@@ -65,11 +77,11 @@ I click on the "Delete" button, a call to the `/events/:id` BE endpoint is made 
 
 ---
  
-## Feature Request:
+### Feature Request:
 
 I would like the ability to toggle between a Card and Table view on the Upcoming Events page.
 
-### Acceptance Criteria:
+#### Acceptance Criteria:
 **GIVEN**:
 I am viewing the Upcoming Events page while logged in as any user 
 
@@ -88,7 +100,7 @@ I click on the first “Card view” button, then I will see all of the Upcoming
 I am viewing the Upcoming Events page while logged in as any user 
 
 **WHEN**: 
-I click on the second “Table view” button, then I will see all of the Upcoming Events displayed as a basic Element Plus table with the following columns:
+I click on the second “Table view” button, then I will see all of the Upcoming Events displayed as a table with the following columns:
 - Event Name
 - Description
 - Start Date
@@ -99,10 +111,10 @@ I click on the second “Table view” button, then I will see all of the Upcomi
   
 ---
  
-## Feature Request:
+### Feature Request:
 I would like the ability to modify the User information for all users when logged in as an Admin.
 
-### Acceptance Criteria:
+#### Acceptance Criteria:
 
 **GIVEN**: 
 I am viewing the Users page while logged in as an Admin User 
@@ -111,7 +123,7 @@ I am viewing the Users page while logged in as an Admin User
 I see a new "Edit" button on each User table row
 
 **WHEN**: 
-I click on the "Edit" button, an Element Plus dialog opens with a form containing the following editable fields
+I click on the "Edit" button, an dialog opens with a form containing the following editable fields:
 - First Name
 - Last Name
 - Email Address
@@ -121,7 +133,7 @@ The dialog contains a “Confirm User Edits” button at the bottom
 
 ---
 
-### Acceptance Criteria:
+#### Acceptance Criteria:
 
 **GIVEN**: 
 I am viewing the User Edit dialog and have filled in all of the fields
