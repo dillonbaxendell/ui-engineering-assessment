@@ -47,7 +47,7 @@ The Vue app will come with the Element Plus UI library already set up in the pac
 
 ### Feature Request:
 
-I would like the ability to delete my own events when logged in as a normal user and when logged in as an admin user, I want the ability to delete any event.
+I would like the ability to delete my own events from the Upcoming Events dashboard when logged in as a normal user and when logged in as an admin user, I want the ability to delete any event.
 
 #### Acceptance Criteria:
 **GIVEN**: 
@@ -65,7 +65,7 @@ The UI is updated, and the deleted event no longer displays
 ---
 
 **GIVEN**: 
-I am viewing the My Events page while logged in as a non-Admin User
+I am viewing the Upcoming Events page while logged in as a non-Admin User
 
 **THEN**: 
 I see a new “Delete” button on the Event rows of the table for any events I created
@@ -83,7 +83,7 @@ I would like the ability to toggle between a Card and Table view on the Upcoming
 
 #### Acceptance Criteria:
 **GIVEN**:
-I am viewing the Upcoming Events page while logged in as any user 
+I am viewing the Upcoming Events page when signed out or while logged in as any type of user.
 
 **THEN**:
 I see two new buttons above the Events, one to display events as Cards and the other to display them in a Table format
@@ -97,7 +97,7 @@ I click on the first “Card view” button, then I will see all of the Upcoming
 ---
 
 **GIVEN**: 
-I am viewing the Upcoming Events page while logged in as any user 
+I am viewing the Upcoming Events page when signed out or while logged in as any type of user.
 
 **WHEN**: 
 I click on the second “Table view” button, then I will see all of the Upcoming Events displayed as a table with the following columns:
