@@ -83,7 +83,7 @@ I would like the ability to toggle between a Card and Table view on the Upcoming
 
 #### Acceptance Criteria:
 **GIVEN**:
-I am viewing the Upcoming Events page when signed out or while signed in as any type of user.
+I am any user viewing the Upcoming Events page
 
 **THEN**:
 I see two new buttons above the Events, one to display events as Cards and the other to display them in a Table format
