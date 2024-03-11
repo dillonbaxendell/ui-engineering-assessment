@@ -47,7 +47,7 @@ The Vue app will come with the Element Plus UI library already set up in the pac
 
 ### Feature Request:
 
-I would like the ability to delete my own events from the Upcoming Events dashboard when signed in as a normal user and when signed in as an admin user, I want the ability to delete any event.
+In the Upcoming Events dashboard, I would like the ability to delete events I've created, or if I'm an admin user, I would like to delete any event created.
 
 #### Acceptance Criteria:
 **GIVEN**: 
