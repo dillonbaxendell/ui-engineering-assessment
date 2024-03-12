@@ -47,11 +47,11 @@ The Vue app will come with the Element Plus UI library already set up in the pac
 
 ### Feature Request:
 
-I would like the ability to delete my own events when logged in as a normal user and when logged in as an admin user, I want the ability to delete any event.
+In the Upcoming Events dashboard, I would like the ability to delete events I've created, or if I'm an admin user, I would like to delete any event created.
 
 #### Acceptance Criteria:
 **GIVEN**: 
-I am viewing the Upcoming Events page while logged in as an Admin User
+I am viewing the Upcoming Events page while signed in as an Admin User
 
 **THEN**: 
 I see a new "Delete" button on the Event cards for all events
@@ -65,7 +65,7 @@ The UI is updated, and the deleted event no longer displays
 ---
 
 **GIVEN**: 
-I am viewing the My Events page while logged in as a non-Admin User
+I am viewing the Upcoming Events page while signed in as a non-Admin User
 
 **THEN**: 
 I see a new “Delete” button on the Event rows of the table for any events I created
@@ -83,13 +83,13 @@ I would like the ability to toggle between a Card and Table view on the Upcoming
 
 #### Acceptance Criteria:
 **GIVEN**:
-I am viewing the Upcoming Events page while logged in as any user 
+I am any user viewing the Upcoming Events page
 
 **THEN**:
 I see two new buttons above the Events, one to display events as Cards and the other to display them in a Table format
 
 **GIVEN**:
-I am viewing the Upcoming Events page while logged in as any user 
+I am viewing the Upcoming Events page while signed in as any user 
 
 **WHEN**:
 I click on the first “Card view” button, then I will see all of the Upcoming Events displayed as cards (which is the current UX)
@@ -97,7 +97,7 @@ I click on the first “Card view” button, then I will see all of the Upcoming
 ---
 
 **GIVEN**: 
-I am viewing the Upcoming Events page while logged in as any user 
+I am viewing the Upcoming Events page when signed out or while signed in as any type of user.
 
 **WHEN**: 
 I click on the second “Table view” button, then I will see all of the Upcoming Events displayed as a table with the following columns:
@@ -112,12 +112,12 @@ I click on the second “Table view” button, then I will see all of the Upcomi
 ---
  
 ### Feature Request:
-I would like the ability to modify the User information for all users when logged in as an Admin.
+I would like the ability to modify the User information for all users when signed in as an Admin.
 
 #### Acceptance Criteria:
 
 **GIVEN**: 
-I am viewing the Users page while logged in as an Admin User 
+I am viewing the Users page while signed in as an Admin User 
 
 **THEN**: 
 I see a new "Edit" button on each User table row
