@@ -11,7 +11,7 @@ cleanup() {
 trap cleanup SIGINT
 
 # Start the Uvicorn server in the background
-cd ./be && bin/rails server -p 3000 &
+cd ./be && node server.js &
 server_pid1=$!  # Get the process ID of the last backgrounded command
 
 # Start the npm server in the background
