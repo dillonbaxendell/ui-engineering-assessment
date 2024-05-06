@@ -31,14 +31,15 @@
         <div class="card-footer">
           <div class="footer-buttons">
             <span v-if="authenticated">
-              <ElButton
-                v-if="event.user_id === user.id"
-                data-test="edit-event-button"
-                type="primary"
-                @click="editEvent(event)"
-              >
-                Edit
-              </ElButton>
+              <template v-if="event.user_id === user.id">
+                <ElButton
+                  data-test="edit-event-button"
+                  type="primary"
+                  @click="editEvent(event)"
+                >
+                  Edit
+                </ElButton>
+              </template>
               <ElButton
                 v-else-if="attending(event)"
                 data-test="delete-event-button"

@@ -12,6 +12,7 @@
       <ElTableColumn>
         <template #default="scope">
           <ElButton
+            v-if="user.admin"
             size="small"
             type="danger"
             @click="deleteUser(scope.row)"
@@ -27,6 +28,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { getUsers, deleteUser } from '@/services/users.js';
+  import { useAuthStore } from '@/stores/auth.js';
   import { useUsersStore } from '@/stores/users.js';
   import { useAlertsStore } from '@/stores/alerts.js';
 
@@ -42,6 +44,7 @@
     },
     computed: {
       ...mapState(useUsersStore, ['users']),
+      ...mapState(useAuthStore, ['user']),
     },
     watch: {
       users: {

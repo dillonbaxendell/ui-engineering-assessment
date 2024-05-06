@@ -1,19 +1,12 @@
-# Threeflow Full-Stack Challenge
+# Threeflow Frontend Challenge
 
-- [Threeflow Full-Stack Challenge](#threeflow-full-stack-challenge)
+- [Threeflow Frontend Challenge](#threeflow-frontend-challenge)
   - [Front-end](#front-end)
     - [Requirements](#requirements)
   - [Back-end](#back-end)
     - [Requirements](#requirements-1)
   - [Getting started](#getting-started)
-  - [Support requests](#support-requests)
-    - [Bug 1](#bug-1)
-    - [Bug 2](#bug-2)
-    - [Bug 3](#bug-3)
-    - [Feature request 1](#feature-request-1)
-    - [Feature request 2](#feature-request-2)
-    - [Feature request 3](#feature-request-3)
-    - [Feature request 4](#feature-request-4)
+  - [Front-end challenge](#front-end-challenge)
 
 ## Front-end
 - `/fe` directory
@@ -34,110 +27,122 @@
 - run `bash start_server.sh`
   - this will start both servers and should open the browser to [localhost:8080](http://localhost:8080)
 - Sign in with one of the seed users:
-  - `test@threeflow.com`
-  - `jane@threeflow.com`
+  - `test@threeflow.com` (admin user)
+  - `jane@threeflow.com` 
   - `john@threeflow.com`
 
-## Support requests
-### Bug 1
-**Support request:**
-I'm having trouble sorting the table of events when viewing events I've created. Sometimes they're sorted correctly but other times they aren't.
+# Front-end challenge
 
-**Acceptance criteria**
+This bundle contains a very basic Ruby on Rails API server project and a small Vue 3 project. 
 
-**GIVEN:**
-I am signed in and viewing the Your events tab at /events/my-events
+For the front-end challenge, we’ll be asking you to add the following three features (time permitting) to the site and to submit your updated code back to us. 
 
-**WHEN:**
-I click the Name column to sort the table
+The Vue app will come with the Element Plus UI library already set up in the package and it's used for all of the UI elements of the project.
 
-**THEN:**
-The table rows should be sorted correctly
+**We want to be respectful of your time**. Please time-box to a maximum of three hours. We recommend you start with an outline on your approach for all three "tickets" so that, in case you run out of time, our interviewers can use that information to guide the conversation. 
+
+**The goal of this test is to start a conversation about your engineering skills and approaches to architecture.**
+
+## Feature requests
+
+### Feature Request:
+
+In the Upcoming Events dashboard, I would like the ability to delete events I've created, or if I'm an admin user, I would like to delete any event created.
+
+#### Acceptance Criteria:
+**GIVEN**: 
+I am viewing the Upcoming Events page while signed in as an Admin User
+
+**THEN**: 
+I see a new "Delete" button on the Event cards for all events
+
+**WHEN**: 
+I click on the "Delete" button, a DELETE call to the `/events/:id` BE endpoint is made to delete the event
+
+**AND**: 
+The UI is updated, and the deleted event no longer displays
+ 
+---
+
+**GIVEN**: 
+I am viewing the Upcoming Events page while signed in as a non-Admin User
+
+**THEN**: 
+I see a new “Delete” button on the Event rows of the table for any events I created
+
+**WHEN**: 
+I click on the "Delete" button, a call to the `/events/:id` BE endpoint is made to delete the event
+
+**AND**: The UI is updated, and the deleted event no longer displays
 
 ---
-### Bug 2
-**Support request:**
-I clicked the Attend button for an event by mistake and now I can't seem to Decline it
+ 
+### Feature Request:
 
-**Acceptance criteria**
+I would like the ability to toggle between a Card and Table view on the Upcoming Events page.
 
-**GIVEN:**
-I am signed in as `jane@threeflow.com` and have clicked the Attend button on an event
+#### Acceptance Criteria:
+**GIVEN**:
+I am any user viewing the Upcoming Events page
 
-**WHEN:**
-I click the Decline button for the event I have chosen to attend
+**THEN**:
+I see two new buttons above the Events, one to display events as Cards and the other to display them in a Table format
 
-**THEN:**
-The event status should change and the button should show Attend again
+**GIVEN**:
+I am viewing the Upcoming Events page while signed in as any user 
 
----
-### Bug 3
-**Support request:**
-A third party system is submitting empty data to the "Create Event" `POST /v1/events` endpoint. We need to ensure that we don't allow blank data to be intserted into the database.
-
-**Acceptance criteria**
-
-**GIVEN:**
-I am submitting data via the API
-
-**WHEN:**
-I submit blank data for an event
-
-**THEN:**
-The event should not be created and I should receive an error message.
+**WHEN**:
+I click on the first “Card view” button, then I will see all of the Upcoming Events displayed as cards (which is the current UX)
 
 ---
-### Feature request 1
-**Feature request:**
-I would like the ability to sort events by date when viewing the table of events I've created.
 
-**Acceptance criteria**
+**GIVEN**: 
+I am viewing the Upcoming Events page when signed out or while signed in as any type of user.
 
-**GIVEN:**
-I am signed in and viewing the Your events tab at /events/my-events
+**WHEN**: 
+I click on the second “Table view” button, then I will see all of the Upcoming Events displayed as a table with the following columns:
+- Event Name
+- Description
+- Start Date
+- Attendee Count
+- CTAs
 
-**WHEN:**
-I click the Date
+**AND**: The CTAs column should contain the Attend, Edit and/or Delete buttons
+  
+---
+ 
+### Feature Request:
+I would like the ability to modify the User information for all users when signed in as an Admin.
 
-**THEN:**
-The table rows should be sorted by date
+#### Acceptance Criteria:
+
+**GIVEN**: 
+I am viewing the Users page while signed in as an Admin User 
+
+**THEN**: 
+I see a new "Edit" button on each User table row
+
+**WHEN**: 
+I click on the "Edit" button, an dialog opens with a form containing the following editable fields:
+- First Name
+- Last Name
+- Email Address
+
+**AND**: 
+The dialog contains a “Confirm User Edits” button at the bottom
 
 ---
-### Feature request 2
-**Feature request:**
-Being able to sort events by date in the Upcoming events view would make it easier to find events I wish to attend
 
-**Acceptance criteria**
+#### Acceptance Criteria:
 
-**GIVEN:**
-I am signed in and viewing the Upcoming events view
+**GIVEN**: 
+I am viewing the User Edit dialog and have filled in all of the fields
 
-**THEN:**
-I should see a control I can use to sort the list of events
+**WHEN**: 
+I click on the “Confirm User Edits” button
 
----
-### Feature request 3
-**Feature request:**
-The front-end application supports displaying event attendees on the event show page (/events/:id). We need to include attendees in the API response.
+**THEN**: 
+A PATCH call to the `users/:id` BE endpoint is made with the user data as payload 
 
-**Acceptance criteria**
-
-**GIVEN:**
-I am signed in and viewing a specific event
-
-**THEN:**
-I should see a list of attendees
-
----
-### Feature request 4
-**Feature request:**
-In order to provide a better user experience we need to add pagination to the Event index page (GET /v1/events).
-`curl --location 'http://localhost:3000/v1/events/'`
-
-**Acceptance criteria**
-
-**GIVEN:**
-I am a user of a third party system that uses the API.
-
-**THEN:**
-I should receive a paginated list of Events when I hit the "GET /v1/events" endpoint.
+**AND**: 
+The UI is updated, displaying all of updated user info that was entered in the dialog
