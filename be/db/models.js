@@ -15,6 +15,10 @@ export const defineModels = async (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      admin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
