@@ -1,13 +1,13 @@
 import express from 'express';
 import { Sequelize } from 'sequelize';
-import { defineModels } from './models.js';
-import { seedTables } from './seeds.js';
+import { defineModels } from './db/models.js';
+import { seedTables } from './db/seeds.js';
 
 const app = express();
 const port = 3000;
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: './db.sqlite',
+  storage: 'db/db.sqlite',
 });
 
 app.get('/', (req, res) => {
