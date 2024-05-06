@@ -4,6 +4,7 @@ export const seedTables = async (sequelize) => {
       firstName: 'Event',
       lastName: 'Creator',
       emailAddress: 'test@threeflow.com',
+      admin: true,
     },
     {
       firstName: 'Jane',
