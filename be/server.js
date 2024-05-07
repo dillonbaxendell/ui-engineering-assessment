@@ -8,8 +8,8 @@ import { eventRoutes } from './routes/events.js';
 const app = express();
 const port = 3000;
 
-app.use('/users', userRoutes);
-app.use('/events', eventRoutes);
+app.use('/v1/users', userRoutes);
+app.use('/v1/events', eventRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
