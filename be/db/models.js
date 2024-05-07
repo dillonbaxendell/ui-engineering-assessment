@@ -79,8 +79,8 @@ export const defineModels = async (sequelize) => {
   Users.hasMany(Events);
   Events.belongsTo(Users);
 
-  Users.belongsToMany(Events, { through: 'attendees' });
-  Events.belongsToMany(Users, { through: 'attendees' });
+  Users.belongsToMany(Events, { through: 'attendee' });
+  Events.belongsToMany(Users, { through: 'attendee' });
 
   try {
     await sequelize.sync({ force: true });
