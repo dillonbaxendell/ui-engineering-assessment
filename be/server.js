@@ -1,5 +1,5 @@
 import express from 'express';
-import { Sequelize } from 'sequelize';
+import { sequelize } from './db/sequelize.js';
 import { defineModels } from './db/models.js';
 import { seedTables } from './db/seeds.js';
 import { userRoutes } from './routes/users.js';
@@ -7,10 +7,6 @@ import { eventRoutes } from './routes/events.js';
 
 const app = express();
 const port = 3000;
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: 'db/db.sqlite',
-});
 
 app.use('/users', userRoutes);
 app.use('/events', eventRoutes);
