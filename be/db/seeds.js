@@ -45,7 +45,7 @@ export const seedTables = async (sequelize) => {
     },
   ]);
 
-  sequelize.models.attendee.bulkCreate([
+  await sequelize.models.attendee.bulkCreate([
     {
       userId: users[1].id,
       eventId: events[0].id,
