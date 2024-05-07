@@ -5,7 +5,7 @@ export const userRoutes = express.Router();
 
 // GET /users
 userRoutes.get('/', async (req, res) => {
-  const users = await sequelize.models.users.findAll();
+  const users = await sequelize.models.user.findAll();
 
   if (!users) {
     res.send('No users have been created.');

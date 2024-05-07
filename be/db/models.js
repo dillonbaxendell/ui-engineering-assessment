@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 
 export const defineModels = async (sequelize) => {
-  const Users = sequelize.define('users',
+  const Users = sequelize.define('user',
     {
       firstName: {
         type: DataTypes.STRING,
@@ -35,7 +35,7 @@ export const defineModels = async (sequelize) => {
     },
   );
 
-  const Events = sequelize.define('events', 
+  const Events = sequelize.define('event', 
     {
       name: {
         type: DataTypes.STRING,
@@ -62,7 +62,7 @@ export const defineModels = async (sequelize) => {
     }
   );
 
-  const Attendees = sequelize.define('attendees', {},  {
+  const Attendees = sequelize.define('attendee', {},  {
     indexes: [
       {
         fields: ['userId', 'eventId'],

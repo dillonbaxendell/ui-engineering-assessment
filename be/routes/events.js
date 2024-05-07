@@ -5,7 +5,7 @@ export const eventRoutes = express.Router();
 
 // GET /events
 eventRoutes.get('/', async (req, res) => {
-  const events = sequelize.models.Events.findAll();
+  const events = sequelize.models.event.findAll();
 
   if (!events) {
     res.send('No events have been created.');
