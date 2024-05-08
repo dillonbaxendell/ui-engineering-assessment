@@ -31,17 +31,16 @@
         <div class="card-footer">
           <div class="footer-buttons">
             <span v-if="authenticated">
-              <template v-if="event.userId === user.id">
-                <ElButton
-                  data-test="edit-event-button"
-                  type="primary"
-                  @click="editEvent(event)"
-                >
-                  Edit
-                </ElButton>
-              </template>
               <ElButton
-                v-else-if="attending(event)"
+                v-if="event.userId === user.id"
+                data-test="edit-event-button"
+                type="primary"
+                @click="editEvent(event)"
+              >
+                Edit
+              </ElButton>
+              <ElButton
+                v-if="attending(event)"
                 data-test="delete-event-button"
                 type="danger"
                 @click="declineEvent(event)"
@@ -116,7 +115,7 @@
        * @returns {boolean}
        */
       attending({ id: eventId }) {
-        return this.user.attendees?.findIndex(({ eventId: id }) => id === eventId) > -1;
+        return this.user.attendingEvents.find(({ id: attendingEventId }) => attendingEventId === eventId);
       },
       /**
        * Call API to mark user as attending an event then reload events

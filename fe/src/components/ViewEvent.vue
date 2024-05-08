@@ -126,7 +126,7 @@
        * @returns {boolean}
        */
       attending({ id: eventId }) {
-        return this.user.events?.findIndex(({ id }) => id === eventId) > -1;
+        return this.user.attendingEvents.find(({ id }) => id === eventId);
       },
       /**
        * Call API to mark user as attending an event then reload events
