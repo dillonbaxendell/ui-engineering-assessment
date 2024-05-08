@@ -23,6 +23,7 @@ export const seedTables = async (sequelize) => {
       userId: users[0].id,
       name: 'Meetup at Threeflow',
       location: 'Main Office',
+      description: 'Come and meet the team!',
       startDate: new Date(),
     },
     {
