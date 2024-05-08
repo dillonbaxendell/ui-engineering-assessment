@@ -6,9 +6,9 @@
       @sort-change="doSort"
     >
       <ElTableColumn prop="id" label="ID" />
-      <ElTableColumn prop="first_name" label="First name" />
-      <ElTableColumn prop="last_name" label="Last name" />
-      <ElTableColumn prop="email_address" label="Email address" sortable="custom" />
+      <ElTableColumn prop="firstName" label="First name" />
+      <ElTableColumn prop="lastName" label="Last name" />
+      <ElTableColumn prop="emailAddress" label="Email address" sortable="custom" />
       <ElTableColumn>
         <template #default="scope">
           <ElButton

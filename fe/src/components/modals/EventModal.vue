@@ -18,9 +18,9 @@
       <ElFormItem label="Location" prop="location">
         <ElInput v-model="eventForm.location" />
       </ElFormItem>
-      <ElFormItem label="Date / Time" prop="start_date">
+      <ElFormItem label="Date / Time" prop="startDate">
         <ElDatePicker
-          v-model="eventForm.start_date"
+          v-model="eventForm.startDate"
           type="date"
           placeholder="Pick a day"
         />
@@ -86,7 +86,7 @@
         eventForm: {
           name: '',
           location: '',
-          start_date: '',
+          startDate: '',
         },
         /**
          * Validity state of form fields
@@ -94,7 +94,7 @@
         formValidity: {
           name: false,
           location: false,
-          start_date: false,
+          startDate: false,
         },
         /**
          * Form field validation rules
@@ -110,7 +110,7 @@
             message: 'Required',
             trigger: 'blur',
           }],
-          start_date: [{
+          startDate: [{
             required: true,
             message: 'Required',
             trigger: 'blur',
@@ -142,7 +142,7 @@
       isFormValid() {
         return this.formValidity.name
           && this.formValidity.location
-          && this.formValidity.start_date;
+          && this.formValidity.startDate;
       },
     },
     watch: {
@@ -153,7 +153,7 @@
         this.eventForm = {
           name: '',
           location: '',
-          start_date: '',
+          startDate: '',
           ...this.editingEvent,
         };
 
@@ -175,7 +175,7 @@
        */
       async saveEvent() {
         await saveEvent({
-          user_id: this.user.id,
+          userId: this.user.id,
           ...this.eventForm,
         });
         this.isModalVisible = false;
@@ -222,12 +222,12 @@
         this.eventForm = {
           name: '',
           location: '',
-          start_date: '',
+          startDate: '',
         };
         this.formValidity = {
           name: false,
           location: false,
-          start_date: false,
+          startDate: false,
         };
       },
     },

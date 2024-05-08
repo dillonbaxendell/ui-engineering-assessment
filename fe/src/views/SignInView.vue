@@ -9,8 +9,8 @@
       :rules="rules"
       label-width="120px"
     >
-      <ElFormItem label="Email address" prop="email_address">
-        <ElInput v-model="signInForm.email_address" />
+      <ElFormItem label="Email address" prop="emailAddress">
+        <ElInput v-model="signInForm.emailAddress" />
       </ElFormItem>
     </ElForm>
     <template #footer>
@@ -22,7 +22,7 @@
         </ElButton>
         <ElButton
           type="primary"
-          :disabled="!signInForm.email_address"
+          :disabled="!signInForm.emailAddress"
           @click="doSignIn"
         >
           Sign In
@@ -50,7 +50,7 @@
          * Form validation rules
          */
         rules: {
-          email_address: [{
+          emailAddress: [{
             required: true,
             message: 'Required',
             trigger: 'blur',
@@ -70,7 +70,7 @@
        */
       async doSignIn() {
         try {
-          const data = await signIn(this.signInForm.email_address);
+          const data = await signIn(this.signInForm.emailAddress);
 
           this.setUser(data);
           setSignedIn(data);

@@ -8,7 +8,7 @@
         <div class="when-where">
           <div>
             <ElIcon><Calendar /></ElIcon>
-            {{ dateFormatter(event.start_date) }}
+            {{ dateFormatter(event.startDate) }}
           </div>
           <b>
             {{ event.location }}
@@ -22,7 +22,7 @@
         <div class="footer-buttons">
           <span v-if="authenticated">
             <ElButton
-              v-if="event.user_id === user.id"
+              v-if="event.userId === user.id"
               data-test="edit-event-button"
               type="primary"
               @click="editEvent(event)"
@@ -91,7 +91,7 @@
        * @returns {Array}
        */
       attendeesList() {
-        return this.event.attendee_users?.map(({ first_name, last_name }) => `${first_name} ${last_name}`).toString();
+        return this.event.attendee_users?.map(({ firstName, lastName }) => `${firstName} ${lastName}`).toString();
       },
     },
     async created() {

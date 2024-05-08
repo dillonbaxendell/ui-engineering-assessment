@@ -13,14 +13,14 @@
       label-width="120px"
       @validate="validateHandler"
     >
-      <ElFormItem label="First name" prop="first_name">
-        <ElInput v-model="registerForm.first_name" />
+      <ElFormItem label="First name" prop="firstName">
+        <ElInput v-model="registerForm.firstName" />
       </ElFormItem>
-      <ElFormItem label="Last name" prop="last_name">
-        <ElInput v-model="registerForm.last_name" />
+      <ElFormItem label="Last name" prop="lastName">
+        <ElInput v-model="registerForm.lastName" />
       </ElFormItem>
-      <ElFormItem label="Email address" prop="email_address">
-        <ElInput v-model="registerForm.email_address" />
+      <ElFormItem label="Email address" prop="emailAddress">
+        <ElInput v-model="registerForm.emailAddress" />
       </ElFormItem>
     </ElForm>
     <template #footer>
@@ -49,9 +49,9 @@
          * Form field validity
          */
         formValidity: {
-          first_name: false,
-          last_name: false,
-          email_address: false,
+          firstName: false,
+          lastName: false,
+          emailAddress: false,
         },
         /**
          * Form data model
@@ -61,17 +61,17 @@
          * Form field validation rules
          */
         rules: {
-          first_name: [{
+          firstName: [{
             required: true,
             message: 'Required',
             trigger: 'blur',
           }],
-          last_name: [{
+          lastName: [{
             required: true,
             message: 'Required',
             trigger: 'blur',
           }],
-          email_address: [{
+          emailAddress: [{
             required: true,
             message: 'Required',
             trigger: 'blur',
@@ -87,9 +87,9 @@
        * @returns {boolean}
        */
       isFormValid() {
-        return this.formValidity.first_name
-          && this.formValidity.last_name
-          && this.formValidity.email_address;
+        return this.formValidity.firstName
+          && this.formValidity.lastName
+          && this.formValidity.emailAddress;
       },
     },
     methods: {
