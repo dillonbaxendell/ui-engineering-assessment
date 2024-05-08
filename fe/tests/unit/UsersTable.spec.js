@@ -5,17 +5,17 @@ import { createTestWrapper } from '../utils.js';
 vi.mock('vue-router');
 
 const users = [{
-  first_name: 'User C',
-  last_name: 'User C',
-  email_address: 'UserC@threeflow.com',
+  firstName: 'User C',
+  lastName: 'User C',
+  emailAddress: 'UserC@threeflow.com',
 }, {
-  first_name: 'User A',
-  last_name: 'User A',
-  email_address: 'UserA@threeflow.com',
+  firstName: 'User A',
+  lastName: 'User A',
+  emailAddress: 'UserA@threeflow.com',
 }, {
-  first_name: 'User B',
-  last_name: 'User B',
-  email_address: 'UserB@threeflow.com',
+  firstName: 'User B',
+  lastName: 'User B',
+  emailAddress: 'UserB@threeflow.com',
 }];
 
 describe('UsersTable', () => {
@@ -45,17 +45,17 @@ describe('UsersTable', () => {
     await createWrapper();
 
     wrapper.vm.doSort({
-      prop: 'email_address',
+      prop: 'emailAddress',
       order: 'ascending',
     });
 
-    expect(wrapper.vm.localUsers[0].email_address).toEqual('UserA@threeflow.com');
+    expect(wrapper.vm.localUsers[0].emailAddress).toEqual('UserA@threeflow.com');
 
     wrapper.vm.doSort({
-      prop: 'email_address',
+      prop: 'emailAddress',
       order: 'descending',
     });
 
-    expect(wrapper.vm.localUsers[0].email_address).toEqual('UserC@threeflow.com');
+    expect(wrapper.vm.localUsers[0].emailAddress).toEqual('UserC@threeflow.com');
   });
 });
