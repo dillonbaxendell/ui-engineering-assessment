@@ -2,8 +2,6 @@ import express from 'express';
 import { Sequelize } from 'sequelize';
 import { Models } from '../db/models.js';
 
-const sequelize = new Sequelize('sqlite::memory:');
-
 export const eventRoutes = express.Router();
 
 const eventParams = (body) => ({
@@ -37,7 +35,7 @@ eventRoutes.get('/', async (req, res) => {
     res.send('No events have been created.');
   }
 
-  res.json(events);
+  res.status(200).json(events);
 });
 
 // GET /events/:id
@@ -58,19 +56,19 @@ eventRoutes.get('/:id', async (req, res) => {
     res.status(404).send('Event not found.');
   }
 
-  res.json(event);
+  res.status(200).json(event);
 });
 
 // POST /events
 eventRoutes.post('/', async (req, res) => {
-  const event = await sequelize.models.event.create(eventParams(req.body));
+  const event = await Models.Event.create(eventParams(req.body));
 
   res.json(event);
 });
 
 // DELETE /events/:id
 eventRoutes.delete('/:id', async (req, res) => {
-  await sequelize.models.event.destroy({
+  await Models.Event.destroy({
     where: {
       id: req.params.id,
     },
@@ -81,7 +79,7 @@ eventRoutes.delete('/:id', async (req, res) => {
 
 // PATCH /events/:id
 eventRoutes.patch('/:id', async (req, res) => {
-  const event = await sequelize.models.event.findByPk(req.params.id);
+  const event = await Models.Event.findByPk(req.params.id);
 
   if (!event) {
     res.status(404).send('Event not found.');
