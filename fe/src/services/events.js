@@ -56,7 +56,7 @@ export async function deleteEvent(id) {
  * @returns {Promise}
  */
 export async function joinEvent(eventId, userId) {
-  return tfPost(`users/${userId}/events`, { eventId });
+  return tfPost(`users/${userId}/events/${eventId}`);
 }
 
 /**
