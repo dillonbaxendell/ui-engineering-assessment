@@ -1,5 +1,6 @@
 import express from 'express';
 import { Sequelize } from 'sequelize';
+import { Models } from '../db/models.js';
 
 const sequelize = new Sequelize('sqlite::memory:');
 
@@ -16,8 +17,21 @@ const eventParams = (body) => ({
 
 // GET /events
 eventRoutes.get('/', async (req, res) => {
-  const events = await sequelize.models.event.findAll();
-  console.log('attendees', sequelize.models.event.countAttendees());
+  const events = await Models.Event.findAll({
+    attributes: {
+      include: [
+        [Sequelize.fn('COUNT', Sequelize.col('attendees.id')), 'attendeesCount'],
+      ],
+    },
+    include: [
+      {
+        model: Models.User,
+        as: 'attendees',
+        attributes: [],
+      },
+    ],
+    group: ['event.id'],
+  });
 
   if (!events) {
     res.send('No events have been created.');

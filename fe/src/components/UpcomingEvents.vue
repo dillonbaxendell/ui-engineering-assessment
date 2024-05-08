@@ -67,7 +67,7 @@
             </ElButton>
           </div>
           <div class="attendees-badge">
-            <ElTag>{{ event.attendee.length }} Going</ElTag>
+            <ElTag>{{ event.attendeesCount }} Going</ElTag>
           </div>
         </div>
       </template>
