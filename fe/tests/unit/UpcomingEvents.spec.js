@@ -25,6 +25,7 @@ const user = {
   firstName: 'Jane',
   lastName: 'Doe',
   email: 'undeliverable@threeflow.com',
+  attendingEvents: [],
 };
 
 describe('UpcomingEvents', () => {

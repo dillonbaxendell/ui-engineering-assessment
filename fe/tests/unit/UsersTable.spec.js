@@ -8,14 +8,17 @@ const users = [{
   firstName: 'User C',
   lastName: 'User C',
   emailAddress: 'UserC@threeflow.com',
+  admin: false,
 }, {
   firstName: 'User A',
   lastName: 'User A',
   emailAddress: 'UserA@threeflow.com',
+  admin: false,
 }, {
   firstName: 'User B',
   lastName: 'User B',
   emailAddress: 'UserB@threeflow.com',
+  admin: false,
 }];
 
 describe('UsersTable', () => {

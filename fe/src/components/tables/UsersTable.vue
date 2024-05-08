@@ -12,7 +12,7 @@
       <ElTableColumn>
         <template #default="scope">
           <ElButton
-            v-if="user.admin"
+            v-if="user?.admin"
             size="small"
             type="danger"
             @click="deleteUser(scope.row)"

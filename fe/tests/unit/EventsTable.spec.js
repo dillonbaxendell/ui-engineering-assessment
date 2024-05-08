@@ -38,6 +38,11 @@ describe('EventsTable', () => {
           name: 'MyEvents',
         },
       },
+      provide: {
+        loadEvents: () => new Promise((resolve) => {
+          resolve();
+        }),
+      },
       options: {
         slots: { ...initialData.slots },
         pinia: {
