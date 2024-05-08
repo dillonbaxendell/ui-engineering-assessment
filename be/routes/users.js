@@ -1,5 +1,6 @@
 import express from 'express';
 import { Sequelize } from 'sequelize';
+import { Models } from '../db/models.js';
 
 export const userRoutes = express.Router();
 
@@ -23,7 +24,7 @@ userRoutes.get('/', async (req, res) => {
 
 // GET /users/:id
 userRoutes.get('/:id', async (req, res) => {
-  const user = await sequelize.models.user.findByPk(req.params.id);
+  const user = await Models.User.findByPk(req.params.id);
 
   if (!user) {
     res.status(404).send('User not found.');
