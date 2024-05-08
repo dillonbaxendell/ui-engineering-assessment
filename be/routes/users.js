@@ -1,8 +1,9 @@
 import express from 'express';
-import { sequelize } from '../db/sequelize.js';
+import { Sequelize } from 'sequelize';
 
 export const userRoutes = express.Router();
 
+const sequelize = new Sequelize('sqlite::memory:');
 const userParams = (body) => ({
   firstName: body.firstName,
   lastName: body.lastName,

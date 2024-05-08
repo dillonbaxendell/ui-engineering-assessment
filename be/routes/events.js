@@ -1,5 +1,7 @@
 import express from 'express';
-import { sequelize } from '../db/sequelize.js';
+import { Sequelize } from 'sequelize';
+
+const sequelize = new Sequelize('sqlite::memory:');
 
 export const eventRoutes = express.Router();
 

@@ -1,9 +1,14 @@
 import express from 'express';
-import { sequelize } from './db/sequelize.js';
-import { defineModels } from './db/models.js';
+import { defineModels, Models } from './db/models.js';
 import { seedTables } from './db/seeds.js';
 import { userRoutes } from './routes/users.js';
 import { eventRoutes } from './routes/events.js';
+import { Sequelize } from 'sequelize';
+
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: 'db/db.sqlite',
+});
 
 const app = express();
 const port = 3000;
@@ -19,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.post('/v1/login', async (req, res) => {
   console.log('body', req.body);
-  const user = await sequelize.models.user.findOne({
+  const user = await Models.User.findOne({
     where: {
       emailAddress: req.body.emailAddress,
     },
