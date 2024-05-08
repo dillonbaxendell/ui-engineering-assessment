@@ -18,7 +18,7 @@
           <div class="when-where">
             <div>
               <ElIcon><Calendar /></ElIcon>
-              {{ dateFormatter(event.start_date) }}
+              {{ dateFormatter(event.startDate) }}
             </div>
             <b>
               {{ event.location }}
@@ -31,7 +31,7 @@
         <div class="card-footer">
           <div class="footer-buttons">
             <span v-if="authenticated">
-              <template v-if="event.user_id === user.id">
+              <template v-if="event.userId === user.id">
                 <ElButton
                   data-test="edit-event-button"
                   type="primary"
@@ -67,7 +67,7 @@
             </ElButton>
           </div>
           <div class="attendees-badge">
-            <ElTag>{{ event.attendee_count }} Going</ElTag>
+            <ElTag>{{ event.attendee.length }} Going</ElTag>
           </div>
         </div>
       </template>
@@ -116,7 +116,7 @@
        * @returns {boolean}
        */
       attending({ id: eventId }) {
-        return this.user.attendees?.findIndex(({ event_id: id }) => id === eventId) > -1;
+        return this.user.attendees?.findIndex(({ eventId: id }) => id === eventId) > -1;
       },
       /**
        * Call API to mark user as attending an event then reload events
