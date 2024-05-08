@@ -42,7 +42,17 @@ eventRoutes.get('/', async (req, res) => {
 
 // GET /events/:id
 eventRoutes.get('/:id', async (req, res) => {
-  const event = await sequelize.models.event.findByPk(req.params.id);
+  const event = await Models.Event.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: Models.User,
+        as: 'attendees',
+      },
+    ]
+  });
 
   if (!event) {
     res.status(404).send('Event not found.');

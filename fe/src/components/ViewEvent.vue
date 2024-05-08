@@ -91,7 +91,7 @@
        * @returns {Array}
        */
       attendeesList() {
-        return this.event.attendee_users?.map(({ firstName, lastName }) => `${firstName} ${lastName}`).toString();
+        return this.event.attendees.map(({ firstName, lastName }) => `${firstName} ${lastName}`).toString();
       },
     },
     async created() {
