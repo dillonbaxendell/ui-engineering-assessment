@@ -14,7 +14,8 @@ const eventParams = (body) => ({
 
 // GET /events
 eventRoutes.get('/', async (req, res) => {
-  const events = sequelize.models.event.findAll();
+  const events = await sequelize.models.event.findAll();
+  console.log('attendees', sequelize.models.event.countAttendees());
 
   if (!events) {
     res.send('No events have been created.');
@@ -25,7 +26,7 @@ eventRoutes.get('/', async (req, res) => {
 
 // GET /events/:id
 eventRoutes.get('/:id', async (req, res) => {
-  const event = sequelize.models.event.findByPk(req.params.id);
+  const event = await sequelize.models.event.findByPk(req.params.id);
 
   if (!event) {
     res.status(404).send('Event not found.');
