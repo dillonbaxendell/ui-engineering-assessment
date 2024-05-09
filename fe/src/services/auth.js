@@ -38,11 +38,11 @@ export function setSignedIn(user) {
 /**
  * Sign the user in
  *
- * @param {string} email_address
+ * @param {string} emailAddress
  * @returns {object}
  */
-export function signIn(email_address) {
-  return tfPost('login', { email_address });
+export function signIn(emailAddress) {
+  return tfPost('login', { emailAddress });
 }
 
 /**

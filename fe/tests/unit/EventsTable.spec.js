@@ -8,22 +8,22 @@ const events = [{
   name: 'Test event 2',
   location: 'Threeflow',
   description: 'This is a test',
-  start_date: '2024-01-01T00:00:00.000Z',
-  user_id: 2,
+  startDate: '2024-01-01T00:00:00.000Z',
+  userId: 2,
   attendees: 3,
 }, {
   name: 'Test event 3',
   location: 'Threeflow',
   description: 'This is a test',
-  start_date: '2024-01-01T00:00:00.000Z',
-  user_id: 2,
+  startDate: '2024-01-01T00:00:00.000Z',
+  userId: 2,
   attendees: 3,
 }, {
   name: 'Test event 1',
   location: 'Threeflow',
   description: 'This is a test',
-  start_date: '2024-01-01T00:00:00.000Z',
-  user_id: 2,
+  startDate: '2024-01-01T00:00:00.000Z',
+  userId: 2,
   attendees: 3,
 }];
 
@@ -37,6 +37,11 @@ describe('EventsTable', () => {
         $route: {
           name: 'MyEvents',
         },
+      },
+      provide: {
+        loadEvents: () => new Promise((resolve) => {
+          resolve();
+        }),
       },
       options: {
         slots: { ...initialData.slots },

@@ -1,7 +1,13 @@
 import { DataTypes } from 'sequelize';
 
+export const Models = {
+  User: null,
+  Event: null,
+  Attendee: null,
+}
+
 export const defineModels = async (sequelize) => {
-  const Users = sequelize.define('users',
+  Models.User = sequelize.define('user',
     {
       firstName: {
         type: DataTypes.STRING,
@@ -35,7 +41,7 @@ export const defineModels = async (sequelize) => {
     },
   );
 
-  const Events = sequelize.define('events', 
+  Models.Event = sequelize.define('event', 
     {
       name: {
         type: DataTypes.STRING,
@@ -62,7 +68,7 @@ export const defineModels = async (sequelize) => {
     }
   );
 
-  const Attendees = sequelize.define('attendees', {},  {
+  Models.Attendee = sequelize.define('user_events', {},  {
     indexes: [
       {
         fields: ['userId', 'eventId'],
@@ -76,11 +82,11 @@ export const defineModels = async (sequelize) => {
     ],
   });
   
-  Users.hasMany(Events);
-  Events.belongsTo(Users);
+  Models.User.hasMany(Models.Event);
+  Models.Event.belongsTo(Models.User);
 
-  Users.belongsToMany(Events, { through: 'attendees' });
-  Events.belongsToMany(Users, { through: 'attendees' });
+  Models.User.belongsToMany(Models.Event, { through: Models.Attendee, as: 'attendingEvents' });
+  Models.Event.belongsToMany(Models.User, { through: Models.Attendee, as: 'attendees' });
 
   try {
     await sequelize.sync({ force: true });

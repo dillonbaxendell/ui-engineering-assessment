@@ -16,15 +16,16 @@ const events = [{
   name: 'Test event',
   location: 'Threeflow',
   description: 'This is a test',
-  start_date: '2024-01-01T00:00:00.000Z',
-  user_id: 2,
+  startDate: '2024-01-01T00:00:00.000Z',
+  userId: 2,
   attendees: 3,
 }];
 const user = {
   id: 1,
-  first_name: 'Jane',
-  last_name: 'Doe',
+  firstName: 'Jane',
+  lastName: 'Doe',
   email: 'undeliverable@threeflow.com',
+  attendingEvents: [],
 };
 
 describe('UpcomingEvents', () => {
