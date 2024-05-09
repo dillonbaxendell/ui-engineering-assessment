@@ -103,20 +103,16 @@
           name: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }],
           location: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }],
           startDate: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }, {
             validator: this.checkDate,
-            trigger: 'blur',
           }],
         },
       };
@@ -140,14 +136,12 @@
        * @returns {boolean}
        */
       isFormValid() {
-        return this.formValidity.name
-          && this.formValidity.location
-          && this.formValidity.startDate;
+        return Object.values(this.formValidity).every((v) => !!v);
       },
     },
     watch: {
       /**
-       * When an event is being edited, set the form valus
+       * When an event is being edited, set the form values
        */
       async editingEvent() {
         this.eventForm = {
