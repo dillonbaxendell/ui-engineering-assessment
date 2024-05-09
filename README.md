@@ -33,15 +33,26 @@
 
 # Front-end challenge
 
-This bundle contains a very basic Ruby on Rails API server project and a small Vue 3 project. 
+This bundle contains a very basic Node backend and a small Vue 3 frontend. 
 
-For the front-end challenge, we’ll be asking you to add the following three features (time permitting) to the site and to submit your updated code back to us. 
+For the frontend challenge, we’ll be asking you to add the following three features (time permitting) to the site and to submit your updated code back to us. 
 
 The Vue app will come with the Element Plus UI library already set up in the package and it's used for all of the UI elements of the project.
 
 **We want to be respectful of your time**. Please time-box to a maximum of three hours. We recommend you start with an outline on your approach for all three "tickets" so that, in case you run out of time, our interviewers can use that information to guide the conversation. 
 
 **The goal of this test is to start a conversation about your engineering skills and approaches to architecture.**
+
+# Tips for a great take home
+
+  - Add frontend testing
+  - Document your API endpoints
+  - Think through how you would want to handle corner cases and invalid requests
+  - Think through performance implications and what you would want to do in
+production
+  - Make it easy for our team to build and run locally
+
+**After you are done, please upload your result to GitHub and share the link with us.**
 
 ## Feature requests
 
