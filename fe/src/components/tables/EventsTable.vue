@@ -19,7 +19,7 @@
       >
         <ElTableColumn prop="id" label="ID" />
         <ElTableColumn prop="name" label="Name" sortable="custom" />
-        <ElTableColumn prop="start_date" label="Date" :formatter="dateFormatter">
+        <ElTableColumn prop="startDate" label="Date" :formatter="dateFormatter">
           <template #default="scope">
             <ElTooltip
               v-if="scope.row.status === 'cancelled'"
@@ -37,7 +37,7 @@
         >
           <template #default="scope">
             <ElButton
-              v-if="scope.row.user_id === user.id"
+              v-if="scope.row.userId === user.id"
               size="small"
               type="primary"
               @click="editEvent(scope.row)"
@@ -100,8 +100,8 @@
        */
       tableData() {
         return this.eventsType === 'pastEvents'
-          ? this.localEvents.filter(({ start_date }) => Date.parse(start_date) < Date.now())
-          : this.localEvents.filter(({ start_date }) => Date.parse(start_date) >= Date.now());
+          ? this.localEvents.filter(({ startDate }) => Date.parse(startDate) < Date.now())
+          : this.localEvents.filter(({ startDate }) => Date.parse(startDate) >= Date.now());
       },
     },
     watch: {

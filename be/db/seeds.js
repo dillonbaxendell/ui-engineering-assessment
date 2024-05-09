@@ -1,5 +1,5 @@
 export const seedTables = async (sequelize) => {
-  const users = await sequelize.models.users.bulkCreate([
+  const users = await sequelize.models.user.bulkCreate([
     {
       firstName: 'Event',
       lastName: 'Creator',
@@ -18,11 +18,12 @@ export const seedTables = async (sequelize) => {
     },
   ]);
 
-  const events = await sequelize.models.events.bulkCreate([
+  const events = await sequelize.models.event.bulkCreate([
     {
       userId: users[0].id,
       name: 'Meetup at Threeflow',
       location: 'Main Office',
+      description: 'Come and meet the team!',
       startDate: new Date(),
     },
     {
@@ -45,18 +46,6 @@ export const seedTables = async (sequelize) => {
     },
   ]);
 
-  const attendees = await sequelize.models.attendees.bulkCreate([
-    {
-      userId: users[1].id,
-      eventId: events[0].id,
-    },
-    {
-      userId: users[1].id,
-      eventId: events[1].id,
-    },
-    {
-      userId: users[2].id,
-      eventId: events[1].id,
-    },
-  ]);
+  await events[0].addAttendee(users[1]);
+  await events[1].addAttendees([users[1], users[2]]);
 };

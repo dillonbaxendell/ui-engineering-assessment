@@ -27,16 +27,19 @@ describe('RegisterModal', () => {
   };
 
   it('should validate the form', async () => {
-    await createWrapper();
+    await createWrapper({
+      user: {
+        isRegisterModalVisible: true,
+      },
+    });
 
     expect(wrapper.vm.isFormValid).toBeFalsy();
 
     await wrapper.setData({
-      showModal: true,
       registerForm: {
-        first_name: 'test',
-        last_name: 'test',
-        email_address: 'test',
+        firstName: 'test',
+        lastName: 'test',
+        emailAddress: 'test',
       },
     });
 
