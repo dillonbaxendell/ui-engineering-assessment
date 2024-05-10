@@ -6,7 +6,7 @@ import {
 } from '@/utils/apiClient.js';
 
 /**
- * Gets users
+ * Gets all users
  *
  * @returns {Promise}
  */
@@ -15,7 +15,7 @@ export async function getUsers() {
 }
 
 /**
- * Get the user info
+ * Get the user info for a given user id
  *
  * @param {number} userId
  * @returns {Promise}
@@ -25,20 +25,23 @@ export function getUser(userId) {
 }
 
 /**
- * Delete user
+ * Delete a user by id
  *
- * @param {object} user
- * @param {number} user.id
+ * @param {number} userId
  * @returns {Promise}
  */
-export function deleteUser({ id }) {
-  return tfDelete(`users/${id}`);
+export function deleteUser(userId) {
+  return tfDelete(`users/${userId}`);
 }
 
 /**
- * Save an event
+ * Save changes to a user
  *
  * @param {object} payload
+ * @param {number} payload.id
+ * @param {string} payload.emailAddress
+ * @param {string} payload.firstName
+ * @param {string} payload.lastName
  * @returns {Promise}
  */
 export async function saveUser(payload) {

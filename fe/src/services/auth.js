@@ -20,19 +20,24 @@ export function signOut() {
 }
 
 /**
- * Setting all the appropriate info for logging in a user: localstorage/cookies and pinia states
+ * Setting all the appropriate info for logging in a user: localStorage/cookies and pinia states
  *
  * @param {object} user
+ * @param {number} user.id
+ * @param {string} user.emailAddress
+ * @param {string} user.firstName
+ * @param {string} user.lastName
  */
 export function setSignedIn(user) {
-  if (user.id) {
-    const authStore = useAuthStore();
+  if (!user.id) return;
 
-    authStore.setAuthStatus(true);
-    authStore.setUser(user);
-    window.localStorage.setItem('auth', true);
-    setCookie(`${cookieNameSpace}-user-id`, user.id);
-  }
+  const authStore = useAuthStore();
+
+  authStore.setAuthStatus(true);
+  authStore.setUser(user);
+
+  window.localStorage.setItem('auth', true);
+  setCookie(`${cookieNameSpace}-user-id`, user.id);
 }
 
 /**
@@ -49,6 +54,9 @@ export function signIn(emailAddress) {
  * Register a new user
  *
  * @param {object} form
+ * @param {string} form.emailAddress
+ * @param {string} form.firstName
+ * @param {string} form.lastName
  * @returns {Promise}
  */
 export function register(form) {
