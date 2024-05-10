@@ -4,7 +4,6 @@
     :title="`${eventType} event`"
     width="30%"
     append-to-body
-    @close="resetForm"
   >
     <ElForm
       ref="formRef"
