@@ -62,11 +62,10 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'pinia';
+  import { mapActions, mapState, mapWritableState } from 'pinia';
   import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
   import { getEvent, declineEvent, joinEvent } from '@/services/events.js';
-  import { getUser } from '@/services/users.js';
   import { formatDate } from '@/utils/common.js';
 
   export default {
@@ -83,7 +82,7 @@
       };
     },
     computed: {
-      ...mapState(useAuthStore, ['authenticated', 'user']),
+      ...mapWritableState(useAuthStore, ['authenticated', 'user']),
       ...mapState(useEventsStore, ['events']),
       /**
        * List of attendee names pulled from the API
@@ -129,27 +128,24 @@
         return this.user.attendingEvents.find(({ id }) => id === eventId);
       },
       /**
-       * Call API to mark user as attending an event then reload events
+       * Call API to mark user as attending an event and update store
        *
        * @param {object} event
        */
       async attendEvent(event) {
         await joinEvent(event.id, this.user.id);
-        const user = await getUser(this.user.id);
-
-        this.setUser(user);
+        this.user.attendingEvents.push(event);
       },
       /**
-       * Unmark user as attending an event and reload events
+       * Decline event and update store
        *
        * @param {object} root
        * @param {number} root.id
        */
       async declineEvent({ id }) {
         await declineEvent(id, this.user.id);
-        const user = await getUser(this.user.id);
 
-        this.setUser(user);
+        this.user.attendingEvents = this.user.attendingEvents.filter((event) => event.id !== id);
       },
     },
   };
