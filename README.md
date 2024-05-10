@@ -1,47 +1,45 @@
-# Threeflow Frontend Challenge
+# Threeflow UI Technical Assessment
 
-- [Threeflow Frontend Challenge](#threeflow-frontend-challenge)
+- [Threeflow UI Technical Assessment](#threeflow-ui-technical-assessment)
   - [Front-end](#front-end)
     - [Requirements](#requirements)
   - [Back-end](#back-end)
     - [Requirements](#requirements-1)
   - [Getting started](#getting-started)
-  - [Front-end challenge](#front-end-challenge)
+  - [Description](#description)
+  - [Feature Requests](#feature-requests)
+    - [Feature Request #1](#feature-request-1)
+    - [Feature Request #2](#feature-request-2)
+    - [Feature Request #3](#feature-request-3)
+    - [Feature Request #4](#feature-request-4)
 
-## Front-end
-- `/fe` directory
 ### Requirements
 - NodeJS v20
 
-## Back-end
-- `/be` directory
-### Requirements
-- Ruby v3.1.2
-- rails v7
-- sqlite3
-
 ## Getting started
-- We recommend using [asdf](https://asdf-vm.com/) to manage installed Node and Ruby versions
+- We recommend using [asdf](https://asdf-vm.com/) or [fnm](https://github.com/Schniz/fnm) to manage installed Node versions, but use whatever you're most comfortable with.
 - run `bash setup.sh`
-  - this will install the dependencies and create and populate the database
+  - this will install the dependencies for both the front-end and back-end
 - run `bash start_server.sh`
   - this will start both servers and should open the browser to [localhost:8080](http://localhost:8080)
+  - the backend server will be running on [localhost:3000](http://localhost:3000)
+  - the backend will reseed the database with the seed data anytime the server is restarted
 - Sign in with one of the seed users:
   - `test@threeflow.com` (admin user)
   - `jane@threeflow.com` 
   - `john@threeflow.com`
 
-# Front-end challenge
+## Description
 
 This bundle contains a very basic Node backend and a small Vue 3 frontend. 
 
-For the frontend challenge, we’ll be asking you to add the following three features (time permitting) to the site and to submit your updated code back to us. 
+For the UI assessment, we’ll be asking you to add the following four features (time permitting) to the site and to submit your updated code back to us. 
 
 The Vue app will come with the Element Plus UI library already set up in the package and it's used for all of the UI elements of the project.
 
-**We want to be respectful of your time**. Please time-box to a maximum of three hours. We recommend you start with an outline on your approach for all three "tickets" so that, in case you run out of time, our interviewers can use that information to guide the conversation. 
+**We want to be respectful of your time**. Please time-box to a maximum of four hours. We do not require you to finish all feature requests, however, we recommend you start with an outline on your approach for all feature requests so our interviewers can use that information to guide the conversation in case you aren't able to complete every request.
 
-**The goal of this test is to start a conversation about your engineering skills and approaches to architecture.**
+**The goal of this test is to start a conversation about your engineering skills and approach to architecture.**
 
 # Tips for a great take home
 
@@ -54,106 +52,139 @@ production
 
 **After you are done, please upload your result to GitHub and share the link with us.**
 
-## Feature requests
+## Feature Requests
 
-### Feature Request:
+### Feature Request #1:
+I would like the ability to delete any event that I can edit.
 
-In the Upcoming Events dashboard, I would like the ability to delete events I've created, or if I'm an admin user, I would like to delete any event created.
+#### Acceptance Criteria (Seeing the Delete Button):
+**GIVEN**:
+I am an authenticated user viewing the Upcoming Events page.
 
-#### Acceptance Criteria:
+**WHEN**:
+I click on the edit button for an event and the event details dialog opens
+
+**THEN**:
+I see a new "Delete" button in the dialog somewhere.
+
+#### Acceptance Criteria (Deleting the Event):
+**GIVEN**:
+I am an authenticated user viewing the event details dialog.
+
+**WHEN**:
+I click on the "Delete" button
+
+**THEN**:
+The dialog closes and the event is removed from the list of upcoming events.
+
+**AND**:
+A page refresh should not show the event anymore.
+
+---
+
+### Feature Request #2:
+As an Admin, I would like the ability to edit any event instead of just the ones I've created.
+
+#### Acceptance Criteria (Seeing the Edit Button):
+**GIVEN**:
+I am an authenticated Admin user
+
+**WHEN**:
+I view the Upcoming Events page
+
+**THEN**:
+I will see an "Edit" button on every event card.
+
+---
+
+### Feature Request #3:
+As an Admin, I would like the ability to modify the User information for all users.
+
+#### Acceptance Criteria (Seeing the Edit Button):
+
 **GIVEN**: 
-I am viewing the Upcoming Events page while signed in as an Admin User
-
-**THEN**: 
-I see a new "Delete" button on the Event cards for all events
+I am an authenticated Admin user
 
 **WHEN**: 
-I click on the "Delete" button, a DELETE call to the `/events/:id` BE endpoint is made to delete the event
+I view the Users page
+
+**THEN**: 
+I will see an "Edit" button on each user row.
+
+#### Acceptance Criteria (Editing User Information):
+
+**GIVEN**:
+I am an authenticated Admin user on the Users page
+
+**WHEN**:
+I click on the "Edit" button for a user
+
+**THEN**:
+A dialog opens with a form containing the following editable fields:
+- First Name
+- Last Name
+- Email Address
+
+**AND**:
+All of the user's information is prefilled in the fields.
 
 **AND**: 
-The UI is updated, and the deleted event no longer displays
- 
----
+The dialog contains a “Confirm Edits” button at the bottom
+
+#### Acceptance Criteria (Submitting User Edits):
 
 **GIVEN**: 
-I am viewing the Upcoming Events page while signed in as a non-Admin User
-
-**THEN**: 
-I see a new “Delete” button on the Event rows of the table for any events I created
+I am an authenticated Admin User viewing the User Edit dialog and have filled in all of the fields
 
 **WHEN**: 
-I click on the "Delete" button, a call to the `/events/:id` BE endpoint is made to delete the event
+I click on the “Confirm User Edits” button
 
-**AND**: The UI is updated, and the deleted event no longer displays
+**THEN**: 
+the dialog closes with the user's information updated in the applicable row on the Users page
+
+**AND**: 
+The updated information persists after a page refresh.
 
 ---
  
-### Feature Request:
+### Feature Request #4:
 
 I would like the ability to toggle between a Card and Table view on the Upcoming Events page.
 
-#### Acceptance Criteria:
+#### Acceptance Criteria (Seeing the View Toggle):
+**GIVEN**:
+I am any user
+
+**WHEN**:
+I view the Upcoming Events page
+
+**THEN**:
+I will see two buttons above the Events, one to display events as Cards and the other to display them in a Table format
+
+#### Acceptance Criteria (Viewing Events as Cards):
 **GIVEN**:
 I am any user viewing the Upcoming Events page
 
-**THEN**:
-I see two new buttons above the Events, one to display events as Cards and the other to display them in a Table format
-
-**GIVEN**:
-I am viewing the Upcoming Events page while signed in as any user 
-
 **WHEN**:
-I click on the first “Card view” button, then I will see all of the Upcoming Events displayed as cards (which is the current UX)
+I click on the “Card view” button
 
----
+**THEN**:
+I will see all of the Upcoming Events displayed as cards.
 
+#### Acceptance Criteria (Viewing Events as a Table):
 **GIVEN**: 
-I am viewing the Upcoming Events page when signed out or while signed in as any type of user.
+I am any user viewing the Upcoming Events page
 
 **WHEN**: 
-I click on the second “Table view” button, then I will see all of the Upcoming Events displayed as a table with the following columns:
+I click on the “Table View” button
+
+**THEN**:
+I will see all of the Upcoming Events displayed as a table with the following columns:
 - Event Name
 - Description
 - Start Date
 - Attendee Count
 - CTAs
 
-**AND**: The CTAs column should contain the Attend, Edit and/or Delete buttons
-  
----
- 
-### Feature Request:
-I would like the ability to modify the User information for all users when signed in as an Admin.
-
-#### Acceptance Criteria:
-
-**GIVEN**: 
-I am viewing the Users page while signed in as an Admin User 
-
-**THEN**: 
-I see a new "Edit" button on each User table row
-
-**WHEN**: 
-I click on the "Edit" button, an dialog opens with a form containing the following editable fields:
-- First Name
-- Last Name
-- Email Address
-
-**AND**: 
-The dialog contains a “Confirm User Edits” button at the bottom
-
----
-
-#### Acceptance Criteria:
-
-**GIVEN**: 
-I am viewing the User Edit dialog and have filled in all of the fields
-
-**WHEN**: 
-I click on the “Confirm User Edits” button
-
-**THEN**: 
-A PATCH call to the `users/:id` BE endpoint is made with the user data as payload 
-
-**AND**: 
-The UI is updated, displaying all of updated user info that was entered in the dialog
+**AND**:
+The CTAs column should contain the Attend/Decline button and an Edit button if applicable.
