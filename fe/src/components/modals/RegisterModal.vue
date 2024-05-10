@@ -64,17 +64,14 @@
           firstName: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }],
           lastName: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }],
           emailAddress: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }],
         },
       };
@@ -87,9 +84,7 @@
        * @returns {boolean}
        */
       isFormValid() {
-        return this.formValidity.firstName
-          && this.formValidity.lastName
-          && this.formValidity.emailAddress;
+        return Object.values(this.formValidity).every((isValid) => isValid);
       },
     },
     methods: {
