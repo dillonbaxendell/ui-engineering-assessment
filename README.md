@@ -11,7 +11,6 @@
     - [Feature Request #1](#feature-request-1)
     - [Feature Request #2](#feature-request-2)
     - [Feature Request #3](#feature-request-3)
-    - [Feature Request #4](#feature-request-4)
 
 ### Requirements
 - NodeJS v20
@@ -83,21 +82,6 @@ A page refresh should not show the event anymore.
 ---
 
 ### Feature Request #2:
-As an Admin, I would like the ability to edit any event instead of just the ones I've created.
-
-#### Acceptance Criteria (Seeing the Edit Button):
-**GIVEN**:
-I am an authenticated Admin user
-
-**WHEN**:
-I view the Upcoming Events page
-
-**THEN**:
-I will see an "Edit" button on every event card.
-
----
-
-### Feature Request #3:
 As an Admin, I would like the ability to modify the User information for all users.
 
 #### Acceptance Criteria (Seeing the Edit Button):
@@ -147,7 +131,7 @@ The updated information persists after a page refresh.
 
 ---
  
-### Feature Request #4:
+### Feature Request #3:
 
 I would like the ability to toggle between a Card and Table view on the Upcoming Events page.
 
