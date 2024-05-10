@@ -4,7 +4,8 @@
     title="Sign up"
     width="30%"
     append-to-body
-    @close="() => isRegisterModalVisible = false"
+    @close="isRegisterModalVisible = false"
+    @closed="$refs.form.resetFields()"
   >
     <ElForm
       ref="form"
@@ -56,7 +57,11 @@
         /**
          * Form data model
          */
-        registerForm: {},
+        registerForm: {
+          firstName: '',
+          lastName: '',
+          emailAddress: '',
+        },
         /**
          * Form field validation rules
          */
@@ -64,17 +69,14 @@
           firstName: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }],
           lastName: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }],
           emailAddress: [{
             required: true,
             message: 'Required',
-            trigger: 'blur',
           }],
         },
       };
@@ -87,9 +89,7 @@
        * @returns {boolean}
        */
       isFormValid() {
-        return this.formValidity.firstName
-          && this.formValidity.lastName
-          && this.formValidity.emailAddress;
+        return Object.values(this.formValidity).every((isValid) => isValid);
       },
     },
     methods: {

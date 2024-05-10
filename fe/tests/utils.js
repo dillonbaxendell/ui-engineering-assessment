@@ -23,6 +23,7 @@ import {
   ElTag,
   ElTooltip,
 } from 'element-plus';
+import { RouterLink } from 'vue-router';
 import { Calendar } from '@element-plus/icons-vue';
 
 /**
@@ -77,6 +78,7 @@ export function createTestWrapper({
         ElTag,
         ElTooltip,
         Calendar,
+        RouterLink,
       },
     },
   });

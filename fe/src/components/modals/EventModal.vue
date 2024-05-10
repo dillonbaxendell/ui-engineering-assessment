@@ -4,7 +4,6 @@
     :title="`${eventType} event`"
     width="30%"
     append-to-body
-    @close="resetForm"
   >
     <ElForm
       ref="formRef"
@@ -141,23 +140,22 @@
     },
     watch: {
       /**
-       * When an event is being edited, set the form values
+       * If editing, validate form fields when modal is first opened.
+       * If adding event, reset form fields when opening modal.
+       *
+       * @param {boolean} isVisible
        */
-      async editingEvent() {
-        this.eventForm = {
-          name: '',
-          location: '',
-          startDate: '',
-          ...this.editingEvent,
-        };
+      async isModalVisible(isVisible) {
+        if (!isVisible) return;
 
-        /**
-         * Validate form fields on load when editing to enable Submit button
-         */
         if (this.editingEvent) {
+          this.eventForm = { ...this.editingEvent };
           this.$nextTick(async () => {
             await this.$refs.formRef.validate();
           });
+        } else {
+          this.resetForm();
+          this.$refs.formRef.resetFields();
         }
       },
     },
