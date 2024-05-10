@@ -15,6 +15,10 @@
 ### Requirements
 - NodeJS v20
 
+### Docs
+- [Vue 3](https://v3.vuejs.org/guide/introduction.html)
+- [Element Plus](https://element-plus.org/#/en-US)
+
 ## Getting started
 - We recommend using [asdf](https://asdf-vm.com/) or [fnm](https://github.com/Schniz/fnm) to manage installed Node versions, but use whatever you're most comfortable with.
 - run `bash setup.sh`
@@ -28,11 +32,27 @@
   - `jane@threeflow.com` 
   - `john@threeflow.com`
 
+### Manual setup
+If you aren't able to run the provided bash scripts, you can manually run the following on two separate terminal windows starting at the root of the project:
+- Frontend
+```bash
+cd fe
+npm i
+npm run dev
+```
+- Backend
+```bash
+cd be
+npm i
+npm run start
+```
+
+
 ## Description
 
 This bundle contains a very basic Node backend and a small Vue 3 frontend. 
 
-For the UI assessment, we’ll be asking you to add the following four features (time permitting) to the site and to submit your updated code back to us. 
+For the UI assessment, we’ll be asking you to add the following three features (time permitting) to the site and to submit your updated code back to us. 
 
 The Vue app will come with the Element Plus UI library already set up in the package and it's used for all of the UI elements of the project.
 
