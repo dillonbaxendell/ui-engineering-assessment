@@ -36,6 +36,7 @@
 If you aren't able to run the provided bash scripts, you can manually run the following on two separate terminal windows starting at the root of the project:
 - Frontend
 ```bash
+clone the repo
 cd fe
 npm i
 npm run dev
@@ -69,7 +70,7 @@ The Vue app will come with the Element Plus UI library already set up in the pac
 production
   - Make it easy for our team to build and run locally
 
-**After you are done, please upload your result to GitHub and share the link with us.**
+**After you are done, please upload your result to GitHub in a private repository and share the link with us.**
 
 ## Feature Requests
 
