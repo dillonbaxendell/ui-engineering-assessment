@@ -11,10 +11,13 @@
     - [Feature Request #1](#feature-request-1)
     - [Feature Request #2](#feature-request-2)
     - [Feature Request #3](#feature-request-3)
-    - [Feature Request #4](#feature-request-4)
 
 ### Requirements
 - NodeJS v20
+
+### Docs
+- [Vue 3](https://v3.vuejs.org/guide/introduction.html)
+- [Element Plus](https://element-plus.org/#/en-US)
 
 ## Getting started
 - We recommend using [asdf](https://asdf-vm.com/) or [fnm](https://github.com/Schniz/fnm) to manage installed Node versions, but use whatever you're most comfortable with.
@@ -29,11 +32,28 @@
   - `jane@threeflow.com` 
   - `john@threeflow.com`
 
+### Manual setup
+If you aren't able to run the provided bash scripts, you can manually run the following on two separate terminal windows starting at the root of the project:
+- Frontend
+```bash
+clone the repo
+cd fe
+npm i
+npm run dev
+```
+- Backend
+```bash
+cd be
+npm i
+npm run start
+```
+
+
 ## Description
 
 This bundle contains a very basic Node backend and a small Vue 3 frontend. 
 
-For the UI assessment, we’ll be asking you to add the following four features (time permitting) to the site and to submit your updated code back to us. 
+For the UI assessment, we’ll be asking you to add the following three features (time permitting) to the site and to submit your updated code back to us. 
 
 The Vue app will come with the Element Plus UI library already set up in the package and it's used for all of the UI elements of the project.
 
@@ -50,7 +70,7 @@ The Vue app will come with the Element Plus UI library already set up in the pac
 production
   - Make it easy for our team to build and run locally
 
-**After you are done, please upload your result to GitHub and share the link with us.**
+**After you are done, please upload your result to GitHub in a private repository and share the link with us.**
 
 ## Feature Requests
 
@@ -83,21 +103,6 @@ A page refresh should not show the event anymore.
 ---
 
 ### Feature Request #2:
-As an Admin, I would like the ability to edit any event instead of just the ones I've created.
-
-#### Acceptance Criteria (Seeing the Edit Button):
-**GIVEN**:
-I am an authenticated Admin user
-
-**WHEN**:
-I view the Upcoming Events page
-
-**THEN**:
-I will see an "Edit" button on every event card.
-
----
-
-### Feature Request #3:
 As an Admin, I would like the ability to modify the User information for all users.
 
 #### Acceptance Criteria (Seeing the Edit Button):
@@ -147,7 +152,7 @@ The updated information persists after a page refresh.
 
 ---
  
-### Feature Request #4:
+### Feature Request #3:
 
 I would like the ability to toggle between a Card and Table view on the Upcoming Events page.
 
