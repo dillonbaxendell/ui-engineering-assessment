@@ -57,7 +57,7 @@ For the UI assessment, we’ll be asking you to add the following three features
 
 The Vue app will come with the Element Plus UI library already set up in the package and it's used for all of the UI elements of the project.
 
-**We want to be respectful of your time**. Please time-box to a maximum of four hours. We do not require you to finish all feature requests, however, we recommend you start with an outline on your approach for all feature requests so our interviewers can use that information to guide the conversation in case you aren't able to complete every request.
+**We want to be respectful of your time**. Please time-box to a maximum of four hours. We do not require you to finish both feature requests, however, we recommend you start with an outline of your approach for each so our interviewers can use that information to guide the conversation in case you aren't able to complete every request.
 
 **The goal of this test is to start a conversation about your engineering skills and approach to architecture.**
 
@@ -75,34 +75,6 @@ production
 ## Feature Requests
 
 ### Feature Request #1:
-I would like the ability to delete any event that I can edit.
-
-#### Acceptance Criteria (Seeing the Delete Button):
-**GIVEN**:
-I am an authenticated user viewing the Upcoming Events page.
-
-**WHEN**:
-I click on the edit button for an event and the event details dialog opens
-
-**THEN**:
-I see a new "Delete" button in the dialog somewhere.
-
-#### Acceptance Criteria (Deleting the Event):
-**GIVEN**:
-I am an authenticated user viewing the event details dialog.
-
-**WHEN**:
-I click on the "Delete" button
-
-**THEN**:
-The dialog closes and the event is removed from the list of upcoming events.
-
-**AND**:
-A page refresh should not show the event anymore.
-
----
-
-### Feature Request #2:
 As an Admin, I would like the ability to modify the User information for all users.
 
 #### Acceptance Criteria (Seeing the Edit Button):
@@ -152,7 +124,7 @@ The updated information persists after a page refresh.
 
 ---
  
-### Feature Request #3:
+### Feature Request #2:
 
 I would like the ability to toggle between a Card and Table view on the Upcoming Events page.
 
