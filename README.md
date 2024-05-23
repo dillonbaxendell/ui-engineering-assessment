@@ -10,7 +10,6 @@
   - [Feature Requests](#feature-requests)
     - [Feature Request #1](#feature-request-1)
     - [Feature Request #2](#feature-request-2)
-    - [Feature Request #3](#feature-request-3)
 
 ### Requirements
 - NodeJS v20
