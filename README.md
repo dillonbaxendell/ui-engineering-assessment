@@ -1,166 +1,51 @@
 # Threeflow UI Technical Assessment
 
-- [Threeflow UI Technical Assessment](#threeflow-ui-technical-assessment)
-  - [Front-end](#front-end)
-    - [Requirements](#requirements)
-  - [Back-end](#back-end)
-    - [Requirements](#requirements-1)
-  - [Getting started](#getting-started)
-  - [Description](#description)
-  - [Feature Requests](#feature-requests)
-    - [Feature Request #1](#feature-request-1)
-    - [Feature Request #2](#feature-request-2)
+Hey there! 👋 Thanks for inviting me to participate in this take-home assessment. I had a lot of fun and I look forward to discussing it more! Below is an overview of the changes I've made to the Threeflow UI Technical Assessment project. 🚀
 
-### Requirements
-- NodeJS v20
+Have a good week!
 
-### Docs
-- [Vue 3](https://v3.vuejs.org/guide/introduction.html)
-- [Element Plus](https://element-plus.org/#/en-US)
+## Changes Overview
 
-## Getting started
-- We recommend using [asdf](https://asdf-vm.com/) or [fnm](https://github.com/Schniz/fnm) to manage installed Node versions, but use whatever you're most comfortable with.
-- run `bash setup.sh`
-  - this will install the dependencies for both the front-end and back-end
-- run `bash start_server.sh`
-  - this will start both servers and should open the browser to [localhost:8080](http://localhost:8080)
-  - the backend server will be running on [localhost:3000](http://localhost:3000)
-  - the backend will reseed the database with the seed data anytime the server is restarted
-- Sign in with one of the seed users:
-  - `test@threeflow.com` (admin user)
-  - `jane@threeflow.com` 
-  - `john@threeflow.com`
-
-### Manual setup
-If you aren't able to run the provided bash scripts, you can manually run the following on two separate terminal windows starting at the root of the project:
-- Frontend
-```bash
-clone the repo
-cd fe
-npm i
-npm run dev
-```
-- Backend
-```bash
-cd be
-npm i
-npm run start
-```
+- Implemented Feature Request #1: User Information Modification
+  - Added an "Edit" button on each user row for authenticated Admin users.
+  - Created a dialog with editable fields (First Name, Last Name, Email Address) prefilled with user information.
+  - Implemented functionality to update user information and persist changes after a page refresh.
+- Implemented Feature Request #2: Card and Table View Toggle
+  - Added a conditional button to toggle between Card and Table view on the Upcoming Events page for all users.
+  - Implemented Card view to display events as cards and Table view to display events in a table format with specified columns.
 
 
-## Description
+## Testing
 
-This bundle contains a very basic Node backend and a small Vue 3 frontend. 
+Due to time-boxing, I added only one test for functionality related to the Edit User Information feature:
+- Added test cases in `EditUserModal.spec.js` to ensure the Edit User dialog opens correctly, fields are prefilled, edits are confirmed, and updated information persists. 
 
-For the UI assessment, we’ll be asking you to add the following three features (time permitting) to the site and to submit your updated code back to us. 
+Added test cases in `EventsTable.spec.js` for the Card and Table view toggle feature:
+- Tested that the Card view button correctly displays events as cards.
+- Tested that the Table view button correctly displays events in a table with the specified columns and buttons.
 
-The Vue app will come with the Element Plus UI library already set up in the package and it's used for all of the UI elements of the project.
+## Getting Started
 
-**We want to be respectful of your time**. Please time-box to a maximum of four hours. We do not require you to finish both feature requests, however, we recommend you start with an outline of your approach for each so our interviewers can use that information to guide the conversation in case you aren't able to complete every request.
+To run the project with my changes:
+1. Ensure you have NodeJS version 20 installed.
+2. Clone the repository and navigate to the project directory.
+3. Run `bash setup.sh` to install dependencies for both the front-end and back-end.
+4. Run `bash start_server.sh` to start both servers. The frontend will be accessible at [localhost:8080](http://localhost:8080), and the backend will run on [localhost:3000](http://localhost:3000).
+5. Sign in using one of the seed users:
+   - `test@threeflow.com` (admin user)
+   - `jane@threeflow.com`
+   - `john@threeflow.com`
 
-**The goal of this test is to start a conversation about your engineering skills and approach to architecture.**
+If you encounter any issues or are unable to run the provided scripts, you can manually set up the project by following the instructions in the original README under "Manual setup."
 
-# Tips for a great take home
+## Notes
 
-  - Add frontend testing
-  - Document your API endpoints
-  - Think through how you would want to handle corner cases and invalid requests
-  - Think through performance implications and what you would want to do in
-production
-  - Make it easy for our team to build and run locally
-
-**After you are done, please upload your result to GitHub in a private repository and share the link with us.**
-
-## Feature Requests
-
-### Feature Request #1:
-As an Admin, I would like the ability to modify the User information for all users.
-
-#### Acceptance Criteria (Seeing the Edit Button):
-
-**GIVEN**: 
-I am an authenticated Admin user
-
-**WHEN**: 
-I view the Users page
-
-**THEN**: 
-I will see an "Edit" button on each user row.
-
-#### Acceptance Criteria (Editing User Information):
-
-**GIVEN**:
-I am an authenticated Admin user on the Users page
-
-**WHEN**:
-I click on the "Edit" button for a user
-
-**THEN**:
-A dialog opens with a form containing the following editable fields:
-- First Name
-- Last Name
-- Email Address
-
-**AND**:
-All of the user's information is prefilled in the fields.
-
-**AND**: 
-The dialog contains a “Confirm Edits” button at the bottom
-
-#### Acceptance Criteria (Submitting User Edits):
-
-**GIVEN**: 
-I am an authenticated Admin User viewing the User Edit dialog and have filled in all of the fields
-
-**WHEN**: 
-I click on the “Confirm User Edits” button
-
-**THEN**: 
-the dialog closes with the user's information updated in the applicable row on the Users page
-
-**AND**: 
-The updated information persists after a page refresh.
+- Ensure to have Vue 3 and Element Plus dependencies properly installed as per the original README.
+- Feel free to explore and test the added features and functionalities.
 
 ---
- 
-### Feature Request #2:
 
-I would like the ability to toggle between a Card and Table view on the Upcoming Events page.
+This README summarizes the changes made to the Threeflow UI Technical Assessment project. If you have any questions or need further clarification, please let me know. 🤖
 
-#### Acceptance Criteria (Seeing the View Toggle):
-**GIVEN**:
-I am any user
-
-**WHEN**:
-I view the Upcoming Events page
-
-**THEN**:
-I will see two buttons above the Events, one to display events as Cards and the other to display them in a Table format
-
-#### Acceptance Criteria (Viewing Events as Cards):
-**GIVEN**:
-I am any user viewing the Upcoming Events page
-
-**WHEN**:
-I click on the “Card view” button
-
-**THEN**:
-I will see all of the Upcoming Events displayed as cards.
-
-#### Acceptance Criteria (Viewing Events as a Table):
-**GIVEN**: 
-I am any user viewing the Upcoming Events page
-
-**WHEN**: 
-I click on the “Table View” button
-
-**THEN**:
-I will see all of the Upcoming Events displayed as a table with the following columns:
-- Event Name
-- Description
-- Start Date
-- Attendee Count
-- CTAs
-
-**AND**:
-The CTAs column should contain the Attend/Decline button and an Edit button if applicable.
+Email Address: dillon.j.baxendell@gmail.com
+Mobile: (952)-649-0060
