@@ -70,7 +70,6 @@
        */
       async doSignIn() {
         try {
-          console.log('in try');
           const data = await signIn(this.signInForm.emailAddress);
 
           this.setUser(data);
