@@ -78,4 +78,13 @@ describe('EventsTable', () => {
 
     expect(wrapper.vm.localEvents[0].name).toEqual('Test event 3');
   });
+
+  // TODO: Test initial view mode (should default to table view).
+  // TODO: Test toggling to card view and ensuring correct rendering of event cards.
+  // TODO: Test toggling back to table view and ensuring correct rendering of table rows.
+  // TODO: Test that the toggle button switches between card and table view modes.
+  // TODO: Test that the correct view mode class is applied to the component based on the current mode.
+  // TODO: Test that the component height and width adjust correctly based on the view mode.
+  // TODO: Test that the component handles error cases (e.g., API request failure when loading events) in both view modes.
+  // TODO: Test that the component properly updates when new events are added or existing events are edited/deleted in both view modes.
 });

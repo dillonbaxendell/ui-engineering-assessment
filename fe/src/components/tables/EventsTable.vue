@@ -12,14 +12,102 @@
         :key="label"
       />
     </ElTabs>
-    <div class="events-table">
+    <div class="button-container">
+      <div v-if="isCardView" id="table-view-button" class="card-button">
+        <ElTooltip
+          effect="dark"
+          content="Table view"
+          placement="top"
+        >
+          <ElButton
+            @click="toggleView"
+          >
+            <ElIcon><Grid /></ElIcon>
+          </ElButton>
+        </ElTooltip>
+      </div>
+      <div v-if="!isCardView" id="card-view-button" class="table-button">
+        <ElTooltip
+          effect="dark"
+          content="Card view"
+          placement="top"
+        >
+          <ElButton>
+            <ElIcon
+              @click="toggleView"
+            >
+              <Postcard />
+            </ElIcon>
+          </ElButton>
+        </ElTooltip>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <!-- TODO: extract this into it's own component -->
+    <div
+      v-if="events && isCardView"
+      class="event-cards"
+    >
+      <ElCard
+        v-for="event in tableData"
+        :key="event.id"
+      >
+        <template #header>
+          <div class="card-header">
+            <h3>
+              <RouterLink :to="`/events/${event.id}`">
+                {{ event.name }}
+              </RouterLink>
+            </h3>
+            <div class="when-where">
+              <div>
+                <ElIcon><Calendar /></ElIcon>
+                {{ cardDateFormatter(event.startDate) }}
+              </div>
+              <b>
+                {{ event.location }}
+              </b>
+            </div>
+          </div>
+        </template>
+        {{ event.description || 'No description' }}
+        <template #footer>
+          <div class="card-footer">
+            <div class="footer-buttons">
+              <span v-if="authenticated">
+                <ElButton
+                  v-if="event.userId === user.id"
+                  data-test="edit-event-button"
+                  type="primary"
+                  @click="editEvent(event)"
+                >
+                  Edit
+                </ElButton>
+              </span>
+            </div>
+            <div v-if="eventsType === 'myEvents'" class="attendees-badge">
+              <ElTag>{{ event.attendeesCount }} Going</ElTag>
+            </div>
+            <div v-if="eventsType === 'pastEvents'" class="attendees-badge">
+              <ElTag>{{ event.attendeesCount }} Attended</ElTag>
+            </div>
+          </div>
+        </template>
+      </ElCard>
+    </div>
+    <!-- End Card -->
+
+    <!-- Table -->
+    <!-- TODO: extract this into it's own component -->
+    <div v-if="!isCardView" class="events-table">
       <ElTable
         :data="tableData"
         @sort-change="doSort"
       >
         <ElTableColumn prop="id" label="ID" />
         <ElTableColumn prop="name" label="Name" sortable="custom" />
-        <ElTableColumn prop="startDate" label="Date" :formatter="dateFormatter">
+        <ElTableColumn prop="startDate" label="Date" :formatter="tableDateFormatter">
           <template #default="scope">
             <ElTooltip
               v-if="scope.row.status === 'cancelled'"
@@ -27,7 +115,7 @@
               placement="top"
             >
               <s>
-                {{ dateFormatter(scope.row, scope.column, scope.row.date) }}
+                {{ tableDateFormatter(scope.row, scope.column, scope.row.date) }}
               </s>
             </ElTooltip>
           </template>
@@ -48,6 +136,7 @@
         </ElTableColumn>
       </ElTable>
     </div>
+    <!-- End Table -->
   </section>
 </template>
 
@@ -91,8 +180,8 @@
       };
     },
     computed: {
-      ...mapState(useAuthStore, ['user']),
-      ...mapState(useEventsStore, ['events']),
+      ...mapState(useAuthStore, ['user', 'authenticated']),
+      ...mapState(useEventsStore, ['events', 'isCardView']),
       /**
        * Filter events data based on eventsType
        *
@@ -123,7 +212,7 @@
       await this.loadEvents();
     },
     methods: {
-      ...mapActions(useEventsStore, ['editEvent']),
+      ...mapActions(useEventsStore, ['editEvent', 'toggleView']),
       /**
        * Route to the requested tab view on tab click
        *
@@ -154,15 +243,24 @@
         }
       },
       /**
-       * Format date helper
+       * Format date helper for table
        *
        * @param {object} row
        * @param {object} column
        * @param {string} cellValue
        * @returns {Date}
        */
-      dateFormatter(row, column, cellValue) {
+      tableDateFormatter(row, column, cellValue) {
         return formatDate(cellValue);
+      },
+      /**
+       * Format date helper for card
+       *
+       * @param {string} value
+       * @returns {Date}
+       */
+      cardDateFormatter(value) {
+        return formatDate(value);
       },
     },
   };
@@ -176,5 +274,36 @@
 .events-table {
   height: 100%;
   overflow: auto;
+}
+
+.event-cards {
+  display: inline-block;
+  width: 900px;
+  padding: 1em;
+
+  :deep(.el-card) {
+    margin: 1em 0;
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+
+  .when-where {
+    text-align: right;
+  }
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container {
+  width: 80em;
+  padding-right: 1em;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

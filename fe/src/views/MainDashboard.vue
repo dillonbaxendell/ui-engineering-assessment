@@ -7,6 +7,7 @@
       <router-view />
     </div>
     <EventModal @reload="loadEvents" />
+    <EditUserModal @reload="loadUsers" />
   </div>
 </template>
 
@@ -15,10 +16,12 @@
   import { useAlertsStore } from '@/stores/alerts.js';
   import { useAuthStore } from '@/stores/auth.js';
   import { useEventsStore } from '@/stores/events.js';
+  import { useUsersStore } from '@/stores/users.js';
   import { setSignedIn } from '@/services/auth.js';
   import { getEvents } from '@/services/events.js';
-  import { getUser } from '@/services/users.js';
+  import { getUsers, getUser } from '@/services/users.js';
   import EventModal from '@/components/modals/EventModal.vue';
+  import EditUserModal from '@/components/modals/EditUserModal.vue';
   import MainSidebar from '@/components/MainSidebar.vue';
   import { getCookie } from '@/utils/cookies.js';
   import { config } from '@/utils/config.js';
@@ -29,6 +32,7 @@
     name: 'MainDashboard',
     components: {
       EventModal,
+      EditUserModal,
       MainSidebar,
     },
     provide() {
@@ -37,6 +41,7 @@
          * Provide load events method to child components
          */
         loadEvents: this.loadEvents,
+        loadUsers: this.loadUsers,
       };
     },
     computed: {
@@ -67,6 +72,7 @@
     methods: {
       ...mapActions(useAuthStore, ['setUser']),
       ...mapActions(useEventsStore, ['setEvents']),
+      ...mapActions(useUsersStore, ['setUsers']),
       ...mapActions(useAlertsStore, ['addAlert']),
       /**
        * Load events from the API
@@ -76,6 +82,21 @@
           const data = await getEvents(this.eventsType);
 
           this.setEvents(data);
+        } catch (error) {
+          /**
+           * Show error alert
+           */
+          this.addAlert({
+            title: 'Error retrieving events.',
+            type: 'error',
+          });
+        }
+      },
+      async loadUsers() {
+        try {
+          const data = await getUsers();
+
+          this.setUsers(data);
         } catch (error) {
           /**
            * Show error alert

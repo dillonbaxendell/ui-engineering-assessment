@@ -5,6 +5,7 @@ export const useEventsStore = defineStore('events', {
     events: [],
     isModalVisible: false,
     editingEvent: null,
+    isCardView: false,
   }),
 
   actions: {
@@ -31,6 +32,12 @@ export const useEventsStore = defineStore('events', {
     cancelEdit() {
       this.editingEvent = null;
       this.isModalVisible = false;
+    },
+    /**
+     * Toggle the card view
+     */
+    toggleView() {
+      this.isCardView = !this.isCardView;
     },
   },
 });

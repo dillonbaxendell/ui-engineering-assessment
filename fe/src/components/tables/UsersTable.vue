@@ -13,6 +13,15 @@
         <template #default="scope">
           <ElButton
             v-if="user?.admin"
+            id="editButton"
+            size="small"
+            type="primary"
+            @click="editUser(scope.row)"
+          >
+            Edit
+          </ElButton>
+          <ElButton
+            v-if="user?.admin"
             size="small"
             type="danger"
             @click="deleteUser(scope.row)"
@@ -66,7 +75,7 @@
     },
     methods: {
       ...mapActions(useAlertsStore, ['addAlert']),
-      ...mapActions(useUsersStore, ['setUsers']),
+      ...mapActions(useUsersStore, ['setUsers', 'editUser']),
 
       /**
        * Load users from the API and save them in the store
