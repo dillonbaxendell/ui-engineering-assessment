@@ -17,12 +17,13 @@ Have a good week!
 
 ## Testing
 
-Due to time-boxing, I added only one test for functionality related to the Edit User Information feature:
-- Added test cases in `EditUserModal.spec.js` to ensure the Edit User dialog opens correctly, fields are prefilled, edits are confirmed, and updated information persists. 
+Due to time-boxing, I only got around to adding one test for functionality related to the Edit User Information feature. However, I did write out the test cases I would tackle if time wasn't limited:
+- Added test cases in `EditUserModal.spec.js` to ensure the Edit User dialog opens correctly, fields are prefilled, edits are confirmed, updated information persists, and more.
 
 Added test cases in `EventsTable.spec.js` for the Card and Table view toggle feature:
 - Tested that the Card view button correctly displays events as cards.
 - Tested that the Table view button correctly displays events in a table with the specified columns and buttons.
+- And more.
 
 ## Getting Started
 
