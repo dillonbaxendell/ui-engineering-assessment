@@ -32,12 +32,11 @@
           content="Card view"
           placement="top"
         >
-          <ElButton>
-            <ElIcon
-              @click="toggleView"
-            >
-              <Postcard />
-            </ElIcon>
+          <ElButton
+            @click="toggleView"
+          >
+            <ElIcon><Postcard /></ElIcon>
+          </ElButton>
           </ElButton>
         </ElTooltip>
       </div>
